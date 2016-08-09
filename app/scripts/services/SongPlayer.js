@@ -25,7 +25,7 @@
         {
             if (currentBuzzObject)
             {
-                currentBuzzObject.stop();
+                currentBuzzObject.stop(); // not sure why I can't use stopSong function here
                 SongPlayer.currentSong.playing = null;
             }
 
@@ -40,13 +40,24 @@
         
         /*
         * @function playSong
-        * @desc Starts playing the 'song' object and sets its status to 'playing'
+        * @desc Starts playing song and sets its status to 'playing'
         * @param {Object} song
         */   
         function playSong(song)
         {
             currentBuzzObject.play();
             song.playing = true;
+        }
+           
+        /*
+        * @function stopSong
+        * @desc Stops playing song and sets its playing status to 'null'
+        * @param {Object} song
+        */   
+        function stopSong(song)
+        {
+            currentBuzzObject.stop();
+            song.playing = null;
         }
                
         /*
@@ -104,6 +115,30 @@
             song.playing = false;
         };
         
+        
+        /*
+        * @function next
+        * @desc Sets the current song to the next song from the album list
+        * @param {Object} song
+        */
+        SongPlayer.next = function(song)
+        {
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex += 1;
+            
+            if (currentSongIndex > currentAlbum.songs.length - 1)
+            {
+                stopSong(SongPlayer.currentSong) // why can't I pass 'song' here?
+            }
+            else
+            {
+                var song = currentAlbum.songs[currentSongIndex];
+                
+                setSong(song);
+                playSong(song);
+            }
+        };
+        
         /*
         * @function previous
         * @desc Sets the current song to the previous song from the album list
@@ -116,8 +151,7 @@
             
             if (currentSongIndex < 0)
             {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
+                stopSong(SongPlayer.currentSong); // why can't I pass 'song' here?
             }
             else
             {
