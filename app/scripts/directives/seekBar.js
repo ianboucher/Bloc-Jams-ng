@@ -46,6 +46,11 @@
                     return { width: percentString() };
                 };
                 
+                scope.thumbPosition = function ()
+                {
+                    return { left: percentString() }
+                }
+                
                 /*
                 * function onClickSeekBar
                 * @desc Updates seek bar value based on user's click on the bar
