@@ -1,6 +1,6 @@
 (function ()
 {
-    function SongPlayer ($rootScope, Fixtures) // Inject Fixtures service to enable access to album info
+    function SongPlayer (Fixtures) // Inject Fixtures service to enable access to album info
     {
         var SongPlayer = {};
         
@@ -33,14 +33,6 @@
             {
                 formats: ["mp3"],
                 preload: true
-            });
-            
-            currentBuzzObject.bind("timeupdate", function ()
-            {
-                $rootScope.$apply(function ()
-                {
-                    SongPlayer.currentTime = currentBuzzObject.getTime();
-                });
             });
 
             SongPlayer.currentSong = song;
@@ -190,6 +182,14 @@
             }
         };
         
+        SongPlayer.getCurrentTime = function ()
+        {
+            if (currentBuzzObject)
+            {
+                SongPlayer.currentTime = currentBuzzObject.getTime();
+            }
+        };
+        
         SongPlayer.setVolume = function (volume)
         {
             if (currentBuzzObject)
@@ -203,5 +203,5 @@
     
     angular
         .module("blocJams")
-        .factory("SongPlayer", ["$rootScope", "Fixtures", SongPlayer]);
+        .factory("SongPlayer", ["Fixtures", SongPlayer]);
 })();

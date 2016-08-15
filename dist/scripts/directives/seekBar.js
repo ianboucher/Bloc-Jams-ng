@@ -9,9 +9,9 @@
         */
         function calculatePercent (seekBar, event)
         {
-            var offsetX        = event.pageX - seekBar.offset().left;
-            var seekBarWidth   = seekBar.width();
-            var offsetXPercent = offsetX / seekBarWidth;
+            var offsetX        = event.pageX - seekBar.offset().left,
+                seekBarWidth   = seekBar.width(),
+                offsetXPercent = offsetX / seekBarWidth;
             
             offsetXPercent = Math.max(0, offsetXPercent);
             offsetXPercent = Math.min(1, offsetXPercent);
@@ -46,9 +46,10 @@
                 
                 var percentString = function ()
                 {
-                    var value   = scope.value;
-                    var max     = scope.max;
-                    var percent = value / max * 100;
+                    var value   = scope.value,
+                        max     = scope.max,
+                        percent = value / max * 100;
+                    
                     return percent + "%";
                 };
                 
@@ -56,7 +57,7 @@
                 {
                     if (typeof scope.onChange === "function")
                     {
-                        scope.onChange({value: newValue}); // call onChange on the view attribute
+                        scope.onChange({value: newValue}); // call the function specified in onChange attribute and pass newValue
                     }
                 }
                 
