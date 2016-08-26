@@ -6,7 +6,8 @@ angular
             this.albumData  = Fixtures.getAlbum();
             this.songPlayer = SongPlayer;
 
-            SongPlayer.addEventListener("timeupdate", function()
+            // use Bean library to listen for timeupdate event firing on SongPlayer
+            bean.on (SongPlayer, "timeupdate", function()
             {
                 $scope.$apply(function()
                 {
