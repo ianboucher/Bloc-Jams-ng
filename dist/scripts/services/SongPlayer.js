@@ -2,7 +2,43 @@
 {
     function SongPlayer (Fixtures) // Inject Fixtures service to enable access to album info
     {
-        var SongPlayer = {};
+        var EventTarget = function() {
+            this.listeners = {};
+        };
+
+        EventTarget.prototype.listeners = null;
+        EventTarget.prototype.addEventListener = function(type, callback){
+          if(!(type in this.listeners)) {
+            this.listeners[type] = [];
+          }
+         this.listeners[type].push(callback);
+        };
+
+        EventTarget.prototype.removeEventListener = function(type, callback){
+          if(!(type in this.listeners)) {
+            return;
+          }
+          var stack = this.listeners[type];
+          for(var i = 0, l = stack.length; i < l; i++){
+             if(stack[i] === callback){
+               stack.splice(i, 1);
+               return this.removeEventListener(type, callback);
+              }
+             }
+        };
+
+        EventTarget.prototype.dispatchEvent = function(event){
+          if(!(event.type in this.listeners)) {
+            return;
+          }
+            var stack = this.listeners[event.type];
+            event.target = this;
+            for(var i = 0, l = stack.length; i < l; i++) {
+                stack[i].call(this, event);
+            }
+        };
+        
+        var SongPlayer = new EventTarget();
         
         /*
         * @desc Buzz object audio file
@@ -34,6 +70,11 @@
                 formats: ["mp3"],
                 preload: true
             });
+            
+            currentBuzzObject.bind("timeupdate", function(event)
+            {
+                SongPlayer.dispatchEvent(event);
+            });  
 
             SongPlayer.currentSong = song;
         }
@@ -186,7 +227,7 @@
         {
             if (currentBuzzObject)
             {
-                SongPlayer.currentTime = currentBuzzObject.getTime();
+                return currentBuzzObject.getTime();
             }
         };
         
