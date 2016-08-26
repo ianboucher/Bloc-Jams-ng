@@ -1,35 +1,31 @@
-(function() 
-{
-    function timecode () 
-    {
-        return function (timeInSeconds) 
+angular
+    .module("blocJams")
+    .filter("timecode", function timecode ()
         {
-            timeInSeconds = Number.parseFloat(timeInSeconds)
-
-            var formattedTime    = null;
-            var wholeSeconds     = Math.floor(timeInSeconds);
-            var minutes          = Math.floor(wholeSeconds / 60);
-            var remainingSeconds = (wholeSeconds% 60);
-            
-            if (Number.isNaN(timeInSeconds))
+            return function (timeInSeconds)
             {
-                formattedTime = "-:--";
-            }
-            else 
-            {
-                if (remainingSeconds < 10) 
-                { 
-                    remainingSeconds = "0" + remainingSeconds
-                };
+                timeInSeconds = Number.parseFloat(timeInSeconds)
 
-                formattedTime = minutes + ":" + remainingSeconds;
-            }
-    
-            return formattedTime;
-        };
-    }
+                var formattedTime    = null;
+                var wholeSeconds     = Math.floor(timeInSeconds);
+                var minutes          = Math.floor(wholeSeconds / 60);
+                var remainingSeconds = (wholeSeconds% 60);
 
-    angular
-     .module("blocJams")
-     .filter("timecode", timecode);
-})();
+                if (Number.isNaN(timeInSeconds))
+                {
+                    formattedTime = "-:--";
+                }
+                else
+                {
+                    if (remainingSeconds < 10)
+                    {
+                        remainingSeconds = "0" + remainingSeconds
+                    };
+
+                    formattedTime = minutes + ":" + remainingSeconds;
+                }
+
+                return formattedTime;
+            };
+        }
+    );
