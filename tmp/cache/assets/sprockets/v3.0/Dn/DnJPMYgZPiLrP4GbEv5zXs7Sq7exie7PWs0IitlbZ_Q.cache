@@ -1,19 +1,0 @@
-{:uriI"çfile://app/assets/javascripts/templates/collection.html?type=text/ng-html&id=c11de60fb3686547857ba73a6053e0e3696951e228f948af1832cf108a163d4a:ET:load_pathI"app/assets/javascripts;T:filenameI"5app/assets/javascripts/templates/collection.html;T:	nameI"templates/collection;T:logical_pathI"templates/collection.html;T:content_typeI"text/ng-html;T:sourceI"@<section class="album-covers container clearfix">
-    <div class="collection-album-container column fourth" ng-repeat="album in collection.albums track by $index">
-        <img src="{{ album.albumArtUrl }}">
-        <div class="collection-album-info caption">
-            <p>
-                <a class="album-name" ui-sref="album">{{ album.title }}</a>
-                <br/>
-                <a ui-sref="album">{{ album.artist }}</a>
-                <br/>
-                {{ album.songs.length }} songs
-                <br/>
-            </p>
-        </div>
-    </div>
-</section>;T:metadata{	:dependencieso:Set:
-@hash}
-I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"Cfile-digest://app/assets/javascripts/templates/collection.html;TTF:charsetI"
-utf-8;F:digest"%ñﬁŒd[\å˙ÓeOÓrIm»c¥aküòA«˛C∑é≠:lengthi@:dependencies_digest"%mÀñÙ#á0®ÑxO(Æﬂ&€v·ô”ÜıD©∏¶$^î)π:idI"Ec11de60fb3686547857ba73a6053e0e3696951e228f948af1832cf108a163d4a;F:
-mtimel+%«®W
