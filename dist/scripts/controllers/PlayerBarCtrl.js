@@ -1,3 +1,5 @@
+"use strict"
+
 angular
     .module("blocJams")
     .controller("PlayerBarCtrl", ["Fixtures", "SongPlayer", "$scope",

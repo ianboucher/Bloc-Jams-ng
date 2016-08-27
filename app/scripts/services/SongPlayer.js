@@ -1,3 +1,5 @@
+"use strict"
+
 angular
     .module("blocJams")
     .factory("SongPlayer", ["Fixtures", function SongPlayer (Fixtures) // Inject Fixtures service to enable access to album info

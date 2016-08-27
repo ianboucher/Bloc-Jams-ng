@@ -1,3 +1,5 @@
+"use strict"
+
 angular
     .module("blocJams")
     .directive("seekBar", ["$document", function seekBar ($document)
