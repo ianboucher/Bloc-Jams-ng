@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="blocJams">
+
+<head>
+  <title>BlocJams</title>
+
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300" %>
+  <%= stylesheet_link_tag    "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" %>
+
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "https://code.jquery.com/jquery-2.1.4.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js" %>
+  <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/bean/1.0.15/bean.min.js" %>
+
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+    <nav class="navbar"> <!-- navigation bar -->
+        <a ui-sref="landing" class="logo">
+            <img src="/assets/images/bloc_jams_logo.png" alt="bloc jams logo" class="logo">
+        </a>
+        <div class="links-container">
+            <a ui-sref="collection" class="navbar-link">Collection</a>
+        </div>
+    </nav>
+
+    <ui-view></ui-view>
+
+</body>
+</html>

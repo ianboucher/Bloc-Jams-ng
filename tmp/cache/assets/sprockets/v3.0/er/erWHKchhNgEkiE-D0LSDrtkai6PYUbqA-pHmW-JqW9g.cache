@@ -1,0 +1,29 @@
+{:uriI"ˆfile://app/assets/javascripts/templates/album.html?type=text/ng-html&id=7a337adcaf6cfd9050d689339c3a386bdee1977b82d5efa6c2593ca5b71249f9:ET:load_pathI"app/assets/javascripts;T:filenameI"0app/assets/javascripts/templates/album.html;T:	nameI"templates/album;T:logical_pathI"templates/album.html;T:content_typeI"text/ng-html;T:sourceI"„<main class="album-view container narrow">
+    <section class="clearfix">
+        <div class="column half">
+            <img src="{{ album.albumData.albumArtUrl }}" class="album-cover-art">
+        </div>
+        <div class="album-view-details column half">
+            <h2 class="album-view-title">{{ album.albumData.title }}</h2>
+            <h3 class="album-view-artist">{{ album.albumData.artist }}</h3>
+            <h5 class="album-view-release-info">{{ album.albumData.year + " " + album.albumData.label }}</h5>
+        </div>
+    </section>
+    <table class="album-view-song-list">
+        <tr class="album-view-song-item" ng-repeat="song in album.albumData.songs" ng-mouseover="hovered = true" ng-mouseleave="hovered = false">
+            <td class="song-item-number">
+                <span ng-show="!song.playing && !hovered">{{ $index + 1 }}</span>
+                <a class="album-song-button" ng-show="!song.playing && hovered" ng-click="album.songPlayer.play(song)"><span class="ion-play"></span></a>
+                <a class="album-song-button" ng-show="song.playing" ng-click="album.songPlayer.pause(song)"><span class="ion-pause"></span></a>
+            </td>
+            <td class="song-item-title">{{ song.title }}</td>
+            <td class="song-item-duration">{{ song.duration | timecode }}</td>
+        </tr>
+    </table>
+</main>
+
+<ng-include src="'/templates/player_bar.html'"></ng-include>;T:metadata{	:dependencieso:Set:
+@hash}
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI">file-digest://app/assets/javascripts/templates/album.html;TTF:charsetI"
+utf-8;F:digest"%Ó İñåJìàÇ§`,H¾÷Î—œÉ‹s¥Ù’:lengthi„:dependencies_digest"%xN÷nnİÈÖöw£‡"´şQ4;­Ş½ZÌ›38:idI"E7a337adcaf6cfd9050d689339c3a386bdee1977b82d5efa6c2593ca5b71249f9;F:
+mtimel+§¬W

@@ -1,0 +1,27 @@
+{:uriI"äfile://app/assets/javascripts/templates/landing.html?type=text/ng-html&id=ef31f5a7d2e554b13b0056244903cfbf1dbaaca8afefe0283ace2f766c749518:ET:load_pathI"app/assets/javascripts;T:filenameI"2app/assets/javascripts/templates/landing.html;T:	nameI"templates/landing;T:logical_pathI"templates/landing.html;T:content_typeI"text/ng-html;T:sourceI"«<section class="hero-content">
+    <h1 class="hero-title">{{ landing.heroTitle }}</h1>
+</section>
+
+<section class="selling-points container clearfix">
+    <div class="point column third">
+        <span class="ion-music-note"></span>
+        <h5 class="point-title">Choose your music</h5>
+        <p class="point-description">The world is full of music; why should you have to listen to music that someone else chose?</p>
+    </div>
+    
+    <div class="point column third">
+        <span class="ion-radio-waves"></span>
+        <h5 class="point-title">Unlimited, streaming, ad-free</h5>
+        <p class="point-description">No arbitrary limits. No distractions.</p>
+    </div>
+    
+    <div class="point column third">
+        <span class="ion-iphone"></span>
+        <h5 class="point-title">Mobile enabled</h5>
+        <p class="point-description">Listen to your music on the go. This streaming service is available on all mobile platforms.</p>
+    </div>
+</section>;T:metadata{	:dependencieso:Set:
+@hash}
+I"environment-version;TTI"environment-paths;TTI"rails-env;TTI"8processors:type=text/ng-html&file_type=text/ng-html;TTI"@file-digest://app/assets/javascripts/templates/landing.html;TTF:charsetI"
+utf-8;F:digest"%…ûùF§Ïów’ÜÛB$Dì¥¨õ.∆Ä4|:	/:lengthi«:dependencies_digest"%Ø˚ƒöΩ>≠OÅmÇÂ–æhp◊å/ªt◊;˜Q!ˆ:idI"Eef31f5a7d2e554b13b0056244903cfbf1dbaaca8afefe0283ace2f766c749518;F:
+mtimel+]&£W
