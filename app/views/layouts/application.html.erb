@@ -18,12 +18,16 @@
 
 <body>
 
-    <nav class="navbar"> <!-- navigation bar -->
+    <nav class="navbar" ng-controller="NavCtrl"> <!-- navigation bar -->
         <a ui-sref="landing" class="logo">
             <img src="/assets/images/bloc_jams_logo.png" alt="bloc jams logo" class="logo">
         </a>
         <div class="links-container">
             <a ui-sref="collection" class="navbar-link">Collection</a>
+            <a ng-hide="signedIn()" ui-sref="login" class="navbar-link">Log In</a>
+            <a ng-hide="signedIn()" ui-sref="register" class="navbar-link">Register</a>
+            <a ng-show="signedIn()" ui-sref="/" class="navbar-link">{{ user.username }}</a>
+            <a ng-show="signedIn()" ng-click="logout()" class="navbar-link">Log Out</a>
         </div>
     </nav>
 

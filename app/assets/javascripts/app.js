@@ -1,5 +1,5 @@
 angular
-    .module ("blocJams", ["ui.router", "templates"])
+    .module ("blocJams", ["ui.router", "templates", "Devise"])
     .config (function ($stateProvider, $locationProvider)
     {
         $locationProvider
@@ -36,5 +36,37 @@ angular
                     "controller"  : "AlbumCtrl as album",
                     "templateUrl" : "album.html"
                 }
-            );
+            )
+            .state
+            (
+                "login",
+                {
+                    "url"         : "/login",
+                    "controller"  : "AuthCtrl as auth",
+                    "templateUrl" : "login.html",
+                    "onEnter"     : ["$state", "Auth", function ($state, Auth)
+                                    {
+                                        Auth.currentUser().then( function ()
+                                        {
+                                            $state.go("landing")
+                                        })
+                                    }]
+                }
+            )
+            .state
+            (
+                "register",
+                {
+                    "url"         : "/register",
+                    "controller"  : "AuthCtrl as auth",
+                    "templateUrl" : "register.html",
+                    "onEnter"     : ["$state", "Auth", function ($state, Auth)
+                                    {
+                                        Auth.currentUser().then( function ()
+                                        {
+                                            $state.go("landing")
+                                        })
+                                    }]
+                }
+            )
     });
