@@ -1,9 +1,12 @@
-"use strict"
+// "use strict"; Might break (poorly written) 3rd party libraries
 
 angular
     .module("blocJams")
-    .controller("AuthCtrl", ["$scope", "$state", "Auth", function ($scope, $state, Auth)
+    .controller("AuthCtrl", ["$scope", "$state", "Auth",
+        function ($scope, $state, Auth)
         {
+            "use strict"; // Accepted JS community method
+
             $scope.login = function ()
             {
                 Auth.login($scope.user).then(function ()
@@ -16,7 +19,7 @@ angular
             {
                 Auth.register($scope.user).then(function ()
                 {
-                    $state.go("home");
+                    $state.go("landing");
                 });
             };
         }

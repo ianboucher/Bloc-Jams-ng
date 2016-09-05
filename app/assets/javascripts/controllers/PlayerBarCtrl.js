@@ -9,7 +9,7 @@ angular
             this.songPlayer = SongPlayer;
 
             // use Bean library to listen for timeupdate event firing on SongPlayer
-            bean.on (SongPlayer, "timeupdate", function()
+            bean.on (SongPlayer, "timeupdate", function() // To-do: encapsulate Bean in my own "Event Service"
             {
                 $scope.$apply(function()
                 {

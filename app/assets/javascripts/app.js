@@ -46,10 +46,10 @@ angular
                     "templateUrl" : "login.html",
                     "onEnter"     : ["$state", "Auth", function ($state, Auth)
                                     {
-                                        Auth.currentUser().then( function ()
+                                        Auth.currentUser().then(function ()
                                         {
-                                            $state.go("landing")
-                                        })
+                                            $state.go("landing");
+                                        });
                                     }]
                 }
             )
@@ -62,10 +62,10 @@ angular
                     "templateUrl" : "register.html",
                     "onEnter"     : ["$state", "Auth", function ($state, Auth)
                                     {
-                                        Auth.currentUser().then( function ()
+                                        Auth.currentUser().then(function ()
                                         {
-                                            $state.go("landing")
-                                        })
+                                            $state.go("landing");
+                                        });
                                     }]
                 }
             )

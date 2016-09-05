@@ -120,8 +120,9 @@ angular
                     * @desc Uses $apply to constantly upadate scope.value as user drags thumb
                     * @param {Object} event
                     */
-                    scope.trackThumb = function (event)
+                    scope.trackThumb = function (event) // To-Do: add lots of console logs
                     {
+                        console.log($document);
                         $document.bind("mousemove.thumb", function (event)
                         {
                             var percent = calculatePercent (seekBar, event);

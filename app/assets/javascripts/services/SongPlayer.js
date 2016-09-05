@@ -40,7 +40,7 @@ angular
                 {
                     // use Bean library to fire timeupdate event on SongPlayer
                     // when fired by buzzObject
-                    bean.fire(SongPlayer, "timeupdate");
+                    bean.fire(SongPlayer, "timeupdate"); // To-do: encapsulate Bean in my own "Event Service"
                 });
 
                 SongPlayer.currentSong = song;
