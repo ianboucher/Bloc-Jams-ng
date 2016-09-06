@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  album_id: 
+  title: MyString
+  duration: 1
+  audioURL: MyString
+
+two:
+  album_id: 
+  title: MyString
+  duration: 1
+  audioURL: MyString

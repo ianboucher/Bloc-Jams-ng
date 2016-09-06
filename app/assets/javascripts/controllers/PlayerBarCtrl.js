@@ -1,11 +1,11 @@
-"use strict"
+"use strict";
 
 angular
     .module("blocJams")
-    .controller("PlayerBarCtrl", ["Fixtures", "SongPlayer", "$scope",
-        function PlayerBarCtrl (Fixtures, SongPlayer, $scope)
+    .controller("PlayerBarCtrl", ["AlbumService", "SongPlayer", "$scope", "$stateParams",
+        function PlayerBarCtrl (AlbumService, SongPlayer, $scope, $stateParams)
         {
-            this.albumData  = Fixtures.getAlbum();
+            this.albumData  = AlbumService.getAlbum($stateParams.id);
             this.songPlayer = SongPlayer;
 
             // use Bean library to listen for timeupdate event firing on SongPlayer

@@ -2,10 +2,22 @@
 
 angular
     .module("blocJams")
-    .controller("AlbumCtrl", ["Fixtures", "SongPlayer",
-        function AlbumCtrl (Fixtures, SongPlayer)
+    .controller("AlbumCtrl", ["AlbumService", "SongPlayer", "$stateParams",
+        function AlbumCtrl (AlbumService, SongPlayer, $stateParams)
         {
-            this.albumData  = Fixtures.getAlbum()
-            this.songPlayer = SongPlayer;
+            var self = this;
+
+            AlbumService.getAlbum($stateParams.id).then(
+                function albumReceived(albumResponse)
+                {
+                    self.albumData = albumResponse.data;
+                },
+                function albumRetreivalFailed(data)
+                {
+                    console.log("error in Album service getAll()");
+                }
+            );
+
+            self.songPlayer = SongPlayer;
         }
     ]);

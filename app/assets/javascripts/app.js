@@ -34,7 +34,8 @@ angular
                 {
                     "url"         : "/album",
                     "controller"  : "AlbumCtrl as album",
-                    "templateUrl" : "album.html"
+                    "templateUrl" : "album.html",
+                    "params"      : { "id": null }
                 }
             )
             .state
@@ -44,7 +45,7 @@ angular
                     "url"         : "/login",
                     "controller"  : "AuthCtrl as auth",
                     "templateUrl" : "login.html",
-                    "onEnter"     : ["$state", "Auth", function ($state, Auth)
+                    "onEnter"     : ["$state", "Auth", function($state, Auth)
                                     {
                                         Auth.currentUser().then(function ()
                                         {

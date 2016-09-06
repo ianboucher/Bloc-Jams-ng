@@ -1,8 +1,9 @@
-"use strict"
+"use strict";
 
 angular
     .module("blocJams")
-    .factory("SongPlayer", ["Fixtures", function SongPlayer (Fixtures) // Inject Fixtures service to enable access to album info
+    .service("SongPlayer", ["AlbumService", "$stateParams",
+        function SongPlayer(AlbumService, $stateParams) // Inject Fixtures service to enable access to album info
         {
             var SongPlayer = {};
 
@@ -16,21 +17,35 @@ angular
             * @desc Stores current album information
             * @type {Object}
             */
-            var currentAlbum = Fixtures.getAlbum ();
+            var currentAlbum = {};
+
+            // Promise sets currentAlbum when resolved.
+            AlbumService.getAlbum($stateParams.id)
+                .then(
+                    function albumReceived(albumResponse)
+                    {
+                        currentAlbum = albumResponse.data;
+                    },
+                    function albumRetreivalFailed(data)
+                    {
+                        console.log("error in SongPlayer getAlbum");
+                    }
+                );
+
 
             /*
             * @function setSong
             * @desc Stops currently playing song and loads new audio file as currentBuzzObject
             * @param {Object} song
             */
-            function setSong (song)
+            function setSong(song)
             {
                 if (SongPlayer.currentSong && SongPlayer.currentSong.playing)
                 {
                     stopSong (SongPlayer.currentSong)
                 }
 
-                currentBuzzObject = new buzz.sound (song.audioUrl,
+                currentBuzzObject = new buzz.sound (song.audioURL,
                 {
                     formats: ["mp3"],
                     preload: true

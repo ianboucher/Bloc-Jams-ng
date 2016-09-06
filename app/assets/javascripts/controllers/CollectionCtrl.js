@@ -1,10 +1,21 @@
-"use strict"
+"use strict";
 
 angular
     .module("blocJams")
-    .controller("CollectionCtrl", ["Fixtures",
-        function CollectionCtrl (Fixtures)
+    .controller("CollectionCtrl", ["AlbumService",
+        function CollectionCtrl(AlbumService)
         {
-            this.albums = Fixtures.getCollection(12);
+            var self = this;
+
+            AlbumService.getAll().then(
+                function albumsReceived(albumResponse)
+                {
+                    self.albums = albumResponse.data;
+                },
+                function albumRetreivalFailed(data)
+                {
+                    console.log("error in Album service getAll()");
+                }
+            );
         }
     ]);
