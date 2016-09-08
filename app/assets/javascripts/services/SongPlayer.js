@@ -2,8 +2,8 @@
 
 angular
     .module("blocJams")
-    .service("SongPlayer", ["AlbumService", "$stateParams",
-        function SongPlayer(AlbumService, $stateParams) // Inject Fixtures service to enable access to album info
+    .service("SongPlayer",
+        function SongPlayer()
         {
             var SongPlayer = {};
 
@@ -12,26 +12,6 @@ angular
             * @type {Object}
             */
             var currentBuzzObject = null;
-
-            /*
-            * @desc Stores current album information
-            * @type {Object}
-            */
-            var currentAlbum = {};
-
-            // Promise sets currentAlbum when resolved.
-            AlbumService.getAlbum($stateParams.id)
-                .then(
-                    function albumReceived(albumResponse)
-                    {
-                        currentAlbum = albumResponse.data;
-                    },
-                    function albumRetreivalFailed(data)
-                    {
-                        console.log("error in SongPlayer getAlbum");
-                    }
-                );
-
 
             /*
             * @function setSong
@@ -66,7 +46,7 @@ angular
             * @desc Starts playing song and sets its status to 'playing'
             * @param {Object} song
             */
-            function playSong (song)
+            function playSong(song)
             {
                 currentBuzzObject.play();
                 song.playing = true;
@@ -77,7 +57,7 @@ angular
             * @desc Stops playing song and sets its playing status to 'null'
             * @param {Object} song
             */
-            function stopSong (song)
+            function stopSong(song)
             {
                 currentBuzzObject.stop();
                 song.playing = null;
@@ -89,10 +69,16 @@ angular
             * @param {Object} song
             * @returns {Number}
             */
-            function getSongIndex (song)
+            function getSongIndex(song)
             {
-                return currentAlbum.songs.indexOf(song);
+                return SongPlayer.currentAlbum.songs.indexOf(song);
             }
+
+            /*
+            * @desc Stores current album information
+            * @type {Object}
+            */
+            SongPlayer.currentAlbum = null;
 
             /*
             * @desc Stores the currently playing song
@@ -123,7 +109,7 @@ angular
             * @desc Plays the selected new or paused song
             * @param {Object} song
             */
-            SongPlayer.play = function (song)
+            SongPlayer.play = function(song)
             {
                 // enable PlayerBar to use this method without access to 'song' object
                 song = song || SongPlayer.currentSong;
@@ -147,7 +133,7 @@ angular
             * @desc Pauses the selected playing song
             * @param {Object} song
             */
-            SongPlayer.pause = function (song)
+            SongPlayer.pause = function(song)
             {
                 // enable PlayerBar to use this method without access to 'song' object
                 song = song || SongPlayer.currentSong;
@@ -160,18 +146,18 @@ angular
             * @function next
             * @desc Sets the current song to the next song from the album list
             */
-            SongPlayer.next = function ()
+            SongPlayer.next = function()
             {
-                var currentSongIndex = getSongIndex (SongPlayer.currentSong);
+                var currentSongIndex = getSongIndex(SongPlayer.currentSong);
                 currentSongIndex += 1;
 
-                if (currentSongIndex > currentAlbum.songs.length - 1)
+                if (currentSongIndex > SongPlayer.currentAlbum.songs.length - 1)
                 {
                     stopSong (SongPlayer.currentSong)
                 }
                 else
                 {
-                    var song = currentAlbum.songs[currentSongIndex];
+                    var song = SongPlayer.currentAlbum.songs[currentSongIndex];
 
                     setSong(song);
                     playSong(song);
@@ -182,9 +168,9 @@ angular
             * @function previous
             * @desc Sets the current song to the previous song from the album list
             */
-            SongPlayer.previous = function ()
+            SongPlayer.previous = function()
             {
-                var currentSongIndex = getSongIndex (SongPlayer.currentSong);
+                var currentSongIndex = getSongIndex(SongPlayer.currentSong);
                 currentSongIndex -= 1;
 
                 if (currentSongIndex < 0)
@@ -193,7 +179,7 @@ angular
                 }
                 else
                 {
-                    var song = currentAlbum.songs[currentSongIndex];
+                    var song = SongPlayer.currentAlbum.songs[currentSongIndex];
 
                     setSong(song);
                     playSong(song);
@@ -238,4 +224,4 @@ angular
 
             return SongPlayer;
         }
-    ]);
+    );

@@ -9,10 +9,11 @@ angular
             * @desc Calculates percent distance on seek bar where event occurred
             * @param {Object} seekBar, {Object} event
             */
-            function calculatePercent (seekBar, event)
+            function calculatePercent (seekBarElem, event)
             {
-                var offsetX        = event.pageX - seekBar.offset().left,
-                    seekBarWidth   = seekBar.width(),
+                var rect           = seekBarElem.getBoundingClientRect(),
+                    offsetX        = event.pageX - (rect.left + document.body.scrollLeft),
+                    seekBarWidth   = seekBarElem.offsetWidth,
                     offsetXPercent = offsetX / seekBarWidth;
 
                 offsetXPercent = Math.max(0, offsetXPercent);
@@ -32,17 +33,17 @@ angular
 
                 link: function (scope, element, attributes)
                 {
-                    scope.value = 0;
-                    scope.max   = 100;
+                    scope.value = 0;   // holds "value" (position?) of seek bar
+                    scope.max   = 100; // holds the maxium value of seek bar (is that duration for songs?)
 
-                    var seekBar = $(element);
+                    var seekBarElem = element[0];
 
-                    attributes.$observe ("value", function (newValue)
+                    attributes.$observe("value", function observeValue(newValue)
                     {
                         scope.value = newValue;
                     });
 
-                    attributes.$observe ("max", function (newValue)
+                    attributes.$observe("max", function observeMax(newValue)
                     {
                         scope.max = newValue;
                     });
@@ -57,21 +58,20 @@ angular
                     {
                         var value   = scope.value,
                             max     = scope.max,
-                            percent = value / max * 100;
+                            percent = (value / max) * 100;
 
                         return percent + "%";
                     };
 
                     /*
                     * function notifyOnChange
-                    * @desc Notify the onChange attribute that scope.value has
-                    * changed and execute the expression declared on that attribute in the HTML
+                    * @desc Pass changed scope.value to the onChange attribute and
+                    * execute the expression declared on that attribute in the HTML
                     */
                     function notifyOnChange (newValue)
                     {
                         if (typeof scope.onChange === "function")
                         {
-                            // call the function specified in onChange attribute and pass newValue
                             scope.onChange({"value": newValue});
                         }
                     }
@@ -97,6 +97,7 @@ angular
                     */
                     scope.thumbPosition = function ()
                     {
+                        // console.log("calling thumbPosition with percentString =" + percentString()) //--------- REMOVE
                         return {
                             "left" : percentString ()
                         };
@@ -109,7 +110,7 @@ angular
                     */
                     scope.onClickSeekBar = function (event)
                     {
-                        var percent = calculatePercent(seekBar, event);
+                        var percent = calculatePercent(seekBarElem, event);
 
                         scope.value = percent * scope.max;
                         notifyOnChange(scope.value)
@@ -120,12 +121,13 @@ angular
                     * @desc Uses $apply to constantly upadate scope.value as user drags thumb
                     * @param {Object} event
                     */
-                    scope.trackThumb = function (event) // To-Do: add lots of console logs
+                    scope.trackThumb = function($event)
                     {
-                        console.log($document);
-                        $document.bind("mousemove.thumb", function (event)
+                        var $thumb = angular.element($event.target);
+
+                        $thumb.on("mousemove", function dragThumb(event)
                         {
-                            var percent = calculatePercent (seekBar, event);
+                            var percent = calculatePercent(seekBarElem, event);
 
                             scope.$apply (function ()
                             {
@@ -134,10 +136,11 @@ angular
                             });
                         });
 
-                        $document.bind("mouseup.thumb", function()
+                        $thumb.on("mouseup", function clearThumbListeners()
                         {
-                            $document.unbind("mousemove.thumb");
-                            $document.unbind("mouseup.thumb");
+                            console.log("removing listeners") //------------------- REMOVE
+                            $thumb.off("mousemove");
+                            $thumb.off("mouseup");
                         });
                     };
                 }

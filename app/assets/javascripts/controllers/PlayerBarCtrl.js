@@ -2,19 +2,53 @@
 
 angular
     .module("blocJams")
-    .controller("PlayerBarCtrl", ["AlbumService", "SongPlayer", "$scope", "$stateParams",
-        function PlayerBarCtrl (AlbumService, SongPlayer, $scope, $stateParams)
+    .controller("PlayerBarCtrl", ["SongPlayer", "$scope",
+        function PlayerBarCtrl(SongPlayer, $scope)
         {
-            this.albumData  = AlbumService.getAlbum($stateParams.id);
-            this.songPlayer = SongPlayer;
+            self = this;
+
+            self.albumData = SongPlayer.currentAlbum;
+
+            self.songTitle = function()
+            {
+                return SongPlayer.currentSong;
+            };
+
+            self.play = function()
+            {
+                SongPlayer.play();
+            };
+
+            self.pause = function()
+            {
+                SongPlayer.pause();
+            };
+
+            self.next = function()
+            {
+                SongPlayer.next();
+            }
+
+            self.previous = function()
+            {
+                SongPlayer.previous();
+            };
+
+            self.setCurrentTime = function()
+            {
+                SongPlayer.setCurrentTime();
+            }
+
 
             // use Bean library to listen for timeupdate event firing on SongPlayer
             bean.on (SongPlayer, "timeupdate", function() // To-do: encapsulate Bean in my own "Event Service"
             {
                 $scope.$apply(function()
                 {
-                    $scope.time = SongPlayer.getCurrentTime();
+                    $scope.time = SongPlayer.getCurrentTime() * 1000;
                 });
             });
+
+            // PLAY, PAUSE, NEXT, PREVIOUS, SONG TITLE, artist, duration, setCurrentTime,
         }
     ]);

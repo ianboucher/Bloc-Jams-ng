@@ -1,6 +1,6 @@
 angular
-    .module ("blocJams", ["ui.router", "templates", "Devise"])
-    .config (function ($stateProvider, $locationProvider)
+    .module("blocJams", ["ui.router", "templates", "Devise"])
+    .config(function ($stateProvider, $locationProvider)
     {
         $locationProvider
             .html5Mode
@@ -35,7 +35,26 @@ angular
                     "url"         : "/album",
                     "controller"  : "AlbumCtrl as album",
                     "templateUrl" : "album.html",
-                    "params"      : { "id": null }
+                    "params"      : { "id": null },
+                    "resolve"     : {
+                                        albumData: function($http, $stateParams)
+                                        {
+                                            return $http(
+                                            {
+                                                "method" : "GET",
+                                                "url"    : "/albums/" + $stateParams.id + ".json",
+                                            }).then(
+                                                function albumReceived(albumResponse)
+                                                {
+                                                    return albumResponse.data;
+                                                },
+                                                function albumRetreivalFailed(data)
+                                                {
+                                                    console.log("error in Album service getAll()");
+                                                }
+                                            );
+                                        }
+                                    }
                 }
             )
             .state

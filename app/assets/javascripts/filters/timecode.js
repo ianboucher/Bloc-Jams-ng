@@ -4,16 +4,16 @@ angular
     .module("blocJams")
     .filter("timecode", function timecode ()
         {
-            return function (timeInSeconds)
+            return function (timeInMiliseconds)
             {
-                timeInSeconds = Number.parseFloat(timeInSeconds)
+                timeInMiliseconds = Number.parseFloat(timeInMiliseconds)
 
-                var formattedTime    = null;
-                var wholeSeconds     = Math.floor(timeInSeconds);
-                var minutes          = Math.floor(wholeSeconds / 60);
-                var remainingSeconds = (wholeSeconds% 60);
+                var formattedTime    = null,
+                    wholeSeconds     = Math.floor(timeInMiliseconds / 1000),
+                    minutes          = Math.floor(wholeSeconds / 60),
+                    remainingSeconds = (wholeSeconds% 60);
 
-                if (Number.isNaN(timeInSeconds))
+                if (Number.isNaN(timeInMiliseconds))
                 {
                     formattedTime = "-:--";
                 }
