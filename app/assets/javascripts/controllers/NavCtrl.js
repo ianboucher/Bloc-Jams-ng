@@ -12,19 +12,19 @@ angular
                 $scope.user = user;
             });
 
-            $scope.$on("devise:new-registration", function (event, user)
+            $scope.$on("devise:new-registration", function(event, user)
             {
                 $scope.user = user;
             });
 
-            $scope.$on("devise:login", function (event, user)
+            $scope.$on("devise:login", function(event, user)
             {
                 $scope.user = user;
             });
 
-            $scope.$on("devise:logout", function (event, user)
+            $scope.$on("devise:logout", function(event, user)
             {
                 $scope.user = {};
-            }); 
+            });
         }
     ]);

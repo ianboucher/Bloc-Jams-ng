@@ -2,12 +2,12 @@
 
 angular
     .module("blocJams")
-    .controller("CollectionCtrl", ["AlbumService",
-        function CollectionCtrl(AlbumService)
+    .controller("CollectionCtrl", ["RequestDataService",
+        function CollectionCtrl(RequestDataService)
         {
             var self = this;
 
-            AlbumService.getAll()
+            RequestDataService.getCollection()
                 .then(
                     function albumsReceived(albumResponse)
                     {
@@ -15,7 +15,7 @@ angular
                     },
                     function albumRetreivalFailed(data)
                     {
-                        console.log("error in Album service getAll()");
+                        console.log("error in Album service getAll()"); //------ To-do: handle error properly
                     }
                 );
         }

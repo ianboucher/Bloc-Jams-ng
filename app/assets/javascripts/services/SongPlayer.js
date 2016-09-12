@@ -2,8 +2,8 @@
 
 angular
     .module("blocJams")
-    .service("SongPlayer",
-        function SongPlayer()
+    .service("SongPlayer", ["$http", "RequestDataService",
+        function SongPlayer($http, RequestDataService)
         {
             var SongPlayer = {};
 
@@ -39,7 +39,22 @@ angular
                 });
 
                 SongPlayer.currentSong = song;
+
+                // set the album associated with the current song // To-do: reduce http requests by getting from collection
+                RequestDataService.getAlbum(song.album_id).then(
+                    function albumsReceived(albumResponse)
+                    {
+                        SongPlayer.currentAlbum = albumResponse.data;
+                        console.log(SongPlayer.currentAlbum)
+
+                    },
+                    function albumRetreivalFailed(data)
+                    {
+                        console.log("error in Album service getAll()"); // To-do: handle error properly
+                    }
+                );
             }
+
 
             /*
             * @function playSong
@@ -75,16 +90,22 @@ angular
             }
 
             /*
-            * @desc Stores current album information
+            * @desc Stores currently displayed album information
             * @type {Object}
             */
-            SongPlayer.currentAlbum = null;
+            SongPlayer.displayedAlbum = {};
+
+            /*
+            * @desc Stores album information for the currently playing song
+            * @type {Object}
+            */
+            SongPlayer.currentAlbum = {}; //-------THIS IS DISPLAYED ALBUM. NEED ALBUM OF CURRENTLY PLAYING SONG FOR PLAYER BAR
 
             /*
             * @desc Stores the currently playing song
             * @type {Object}
             */
-            SongPlayer.currentSong = null;
+            SongPlayer.currentSong = {};
 
             /*
             * @desc Current playback time (in seconds) of currently playing song
@@ -224,4 +245,4 @@ angular
 
             return SongPlayer;
         }
-    );
+    ]);

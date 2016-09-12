@@ -2,9 +2,9 @@
 
 angular
     .module("blocJams")
-    .filter("timecode", function timecode ()
+    .filter("timecode", function timecode()
         {
-            return function (timeInMiliseconds)
+            return function(timeInMiliseconds)
             {
                 timeInMiliseconds = Number.parseFloat(timeInMiliseconds)
 

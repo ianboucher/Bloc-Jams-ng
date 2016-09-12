@@ -1,16 +1,11 @@
-"use strict"
+"use strict";
 
 angular
     .module("blocJams")
-    .controller("AlbumCtrl", ["albumData", "SongPlayer",
-        function AlbumCtrl(albumData, SongPlayer)
+    .controller("AlbumCtrl", ["SongPlayer", "RequestDataService", "$stateParams",
+        function AlbumCtrl(SongPlayer, RequestDataService, $stateParams)
         {
-            // set single source for album data from state resolution data
-            SongPlayer.currentAlbum = albumData;
-
             var self = this;
-
-            self.albumData = SongPlayer.currentAlbum;
 
             self.play = function(song)
             {
@@ -21,5 +16,17 @@ angular
             {
                 SongPlayer.pause(song);
             }
+
+            RequestDataService.getAlbum($stateParams.id).then(
+                function albumsReceived(albumResponse)
+                {
+                    self.albumData = albumResponse.data;
+                    SongPlayer.displayedAlbum = self.albumData;
+                },
+                function albumRetreivalFailed(data)
+                {
+                    console.log("error in Album service getAll()");
+                }
+            );
         }
     ]);

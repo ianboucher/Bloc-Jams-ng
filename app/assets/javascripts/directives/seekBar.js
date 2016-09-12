@@ -31,10 +31,10 @@ angular
                     onChange: "&"
                 },
 
-                link: function (scope, element, attributes)
+                link: function(scope, element, attributes)
                 {
-                    scope.value = 0;   // holds "value" (position?) of seek bar
-                    scope.max   = 100; // holds the maxium value of seek bar (is that duration for songs?)
+                    scope.value = 0;
+                    scope.max   = 100;
 
                     var seekBarElem = element[0];
 
@@ -54,7 +54,7 @@ angular
                     * occured and returns string for use in styles
                     * @returns {String}
                     */
-                    var percentString = function ()
+                    var percentString = function()
                     {
                         var value   = scope.value,
                             max     = scope.max,
@@ -68,10 +68,12 @@ angular
                     * @desc Pass changed scope.value to the onChange attribute and
                     * execute the expression declared on that attribute in the HTML
                     */
-                    function notifyOnChange (newValue)
+                    function notifyOnChange(newValue)
                     {
+                        console.log("calling notifyOnChange");
                         if (typeof scope.onChange === "function")
                         {
+                            console.log("sending value to onChange");
                             scope.onChange({"value": newValue});
                         }
                     }
@@ -82,10 +84,11 @@ angular
                     * is the % distance along the seek bar
                     * @returns {String} event
                     */
-                    scope.fillWidth = function ()
+                    scope.fillWidth = function()
                     {
+                        // console.log("calling fillWidth with percentString = " + percentString()) //--------- REMOVE
                         return {
-                            "width" : percentString ()
+                            "width" : percentString()
                         };
                     };
 
@@ -95,11 +98,11 @@ angular
                     * is the % offset position along the seek bar
                     * @returns {String} event
                     */
-                    scope.thumbPosition = function ()
+                    scope.thumbPosition = function()
                     {
                         // console.log("calling thumbPosition with percentString =" + percentString()) //--------- REMOVE
                         return {
-                            "left" : percentString ()
+                            "left" : percentString()
                         };
                     };
 
@@ -108,11 +111,12 @@ angular
                     * @desc Updates seek bar value based on user's click on the bar
                     * @param {Object} event
                     */
-                    scope.onClickSeekBar = function (event)
+                    scope.onClickSeekBar = function(event)
                     {
                         var percent = calculatePercent(seekBarElem, event);
 
                         scope.value = percent * scope.max;
+                        // console.log("calling onChange from onClickSeekBar with scope.value of " + scope.value)
                         notifyOnChange(scope.value)
                     };
 
@@ -124,23 +128,25 @@ angular
                     scope.trackThumb = function($event)
                     {
                         var $thumb = angular.element($event.target);
-
-                        $thumb.on("mousemove", function dragThumb(event)
+                        console.log("mousedown on thumb")
+                        $document.on("mousemove", function dragThumb(event)
                         {
                             var percent = calculatePercent(seekBarElem, event);
 
                             scope.$apply (function ()
                             {
+                                console.log("applying changes")
                                 scope.value = percent * scope.max;
+                                // console.log("calling onChange from trackThumb with scope.value of " + scope.value)
                                 notifyOnChange(scope.value)
                             });
                         });
 
-                        $thumb.on("mouseup", function clearThumbListeners()
+                        $document.on("mouseup", function clearThumbListeners()
                         {
                             console.log("removing listeners") //------------------- REMOVE
-                            $thumb.off("mousemove");
-                            $thumb.off("mouseup");
+                            $document.off("mousemove");
+                            $document.off("mouseup");
                         });
                     };
                 }

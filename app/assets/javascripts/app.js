@@ -32,29 +32,9 @@ angular
             (
                 "album",
                 {
-                    "url"         : "/album",
+                    "url"         : "/album/:id",
                     "controller"  : "AlbumCtrl as album",
-                    "templateUrl" : "album.html",
-                    "params"      : { "id": null },
-                    "resolve"     : {
-                                        albumData: function($http, $stateParams)
-                                        {
-                                            return $http(
-                                            {
-                                                "method" : "GET",
-                                                "url"    : "/albums/" + $stateParams.id + ".json",
-                                            }).then(
-                                                function albumReceived(albumResponse)
-                                                {
-                                                    return albumResponse.data;
-                                                },
-                                                function albumRetreivalFailed(data)
-                                                {
-                                                    console.log("error in Album service getAll()");
-                                                }
-                                            );
-                                        }
-                                    }
+                    "templateUrl" : "album.html"
                 }
             )
             .state

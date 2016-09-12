@@ -2,10 +2,10 @@
 
 angular
     .module("blocJams")
-    .service("AlbumService", ["$http",
-        function AlbumService($http)
+    .service("RequestDataService", ["$http",
+        function RequestDataService($http)
         {
-            this.getAll = function()
+            this.getCollection = function()
             {
                 return $http(
                 {
@@ -22,15 +22,6 @@ angular
                     "url"    : "/albums/" + id + ".json",
                 });
             }
-
-            // this.getAlbumSongs = function(id)
-            // {
-            //     return $http(
-            //     {
-            //         "method" : "GET",
-            //         "url"    : "/songs?album_id=" + id + ".json"
-            //     });
-            // }
 
             return this;
         }
