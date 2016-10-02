@@ -23,6 +23,42 @@ angular
                 });
             }
 
+            this.getSongs = function()
+            {
+                return $http(
+                {
+                    "method" : "GET",
+                    "url"    : "/songs.json"
+                });
+            };
+
+            this.getSong = function(id)
+            {
+                return $http(
+                {
+                    "method" : "GET",
+                    "url"    : "/songs/" + id + ".json",
+                });
+            }
+
+            this.getPlaylists = function()
+            {
+                return $http(
+                {
+                    "method" : "GET",
+                    "url"    : "/playlists.json"
+                });
+            };
+
+            this.getPlaylist = function(id)
+            {
+                return $http(
+                {
+                    "method" : "GET",
+                    "url"    : "/playlists/" + id + ".json",
+                });
+            }
+
             return this;
         }
     ]);
