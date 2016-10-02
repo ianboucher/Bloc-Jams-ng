@@ -1,0 +1,97 @@
+.top-nav {
+    position: relative;
+    height: 5rem;
+    padding: 0.5rem;
+    background-color: rgba(50, 50, 50, 0.5); /* includes a (alpha) value for opacity */
+    z-index: 1; /* ensures navbar will stay above other elements */
+}
+
+.left-nav {
+   position: fixed;
+   top: 0;
+   left: 0;
+   bottom: 0;
+   display: block;
+   width: 5rem;
+   margin-right: auto;
+   margin-left: auto;
+   padding-left: 0px;
+   float: left;
+   border-right: 1px solid #2e2e2e;
+   background-color: #3d3d3d;
+   z-index: 100;
+}
+
+.top-nav > .logo {
+    position: relative;
+    left: 2rem;
+    cursor: pointer;
+}
+
+.left-nav .logo {
+   position: relative;
+   display: block;
+   width: 90%;
+   margin-right: auto;
+   margin-left: auto;
+   margin-top: 1rem;
+   cursor: pointer;
+}
+
+.top-nav .links-container {
+   display: table;
+   position: absolute;
+   top: 0;
+   right: 0;
+   height: 5rem;
+   color: white;
+   text-decoration: none;
+}
+
+.left-nav .links-container {
+   padding-left: 0;
+   list-style: none;
+}
+
+.top-nav .links-container .nav-link {
+   display: table-cell;
+   position: relative;
+   height: 100%;
+   padding-left: 1rem;
+   padding-right: 1rem;
+   vertical-align: middle;
+   color: white;
+   font-size: 0.625rem;
+   letter-spacing: 0.05rem;
+   font-weight: 700;
+   text-transform: uppercase;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+
+.left-nav .nav-link {
+    position: relative;
+    display: block;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: .8rem;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.nav-link .ion-music-note,
+.ion-ios-list-outline {
+    font-size: 2rem;
+}
+
+
+.links-container .nav-link:hover {
+   color: rgb(233, 50, 117);
+}

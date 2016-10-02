@@ -19,10 +19,10 @@
              </a>
          </div>
          <div class="control-group currently-playing">
-             <h2 class="song-name">{{ playerBar.songPlayer.currentSong.title }}</h2>
-             <h2 class="artist-song-mobile">{{ playerBar.songPlayer.currentSong.title }} - {{ playerBar.albumData.artist }}</h2>
-             <h3 class="artist-name">{{ playerBar.songPlayer.currentAlbum.artist }}</h3>
+             <h3 class="song-artist-name">{{ playerBar.getCurrentSongTitle() }} — {{ playerBar.songPlayer.currentAlbum.artist }}</h3>
+             <!-- <h3 class="artist-name">{{ playerBar.songPlayer.currentAlbum.artist }}</h3> -->
              <div class="seek-control">
+                 <!-- <h3 class="artist-song-mobile">{{ playerBar.getCurrentSongTitle() }} — {{ playerBar.songPlayer.currentAlbum.artist }}</h3> -->
                  <div class="seek-bar">
                      <!-- Hardcoded values requred for conversion from miliseconds -->
                      <seek-bar

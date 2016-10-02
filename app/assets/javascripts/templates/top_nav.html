@@ -1,0 +1,14 @@
+<div>
+    <nav class="top-nav" ng-controller="NavCtrl"> <!-- navigation bar -->
+        <a ui-sref="landing" class="logo">
+            <img src="/assets/images/bloc_jams_logo.png" alt="bloc jams logo" class="logo">
+        </a>
+        <div class="links-container">
+            <a ui-sref="collection" class="nav-link">Collection</a>
+            <a ng-hide="signedIn()" ui-sref="login" class="nav-link">Log In</a>
+            <a ng-hide="signedIn()" ui-sref="register" class="nav-link">Sign-Up</a>
+            <a ng-show="signedIn()" ui-sref="/" class="nav-link">{{ user.username }}</a>
+            <a ng-show="signedIn()" ng-click="logout()" class="nav-link">Log Out</a>
+        </div>
+    </nav>
+</div>

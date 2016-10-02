@@ -1,16 +1,19 @@
-<section class="album-covers container clearfix">
-    <div class="collection-album-container column fourth" ng-repeat="album in collection.albums track by $index">
-        <img src="{{ album.artURL }}">
-        <div class="collection-album-info caption">
-            <p>
-                <a class="album-name" ui-sref="album({id: album.id})">{{ album.title }}</a>
-                <br/>
-                <a ui-sref="album({id: album.id})">{{ album.artist }}</a>
-                <br/>
-                {{ album.songs.length }} songs
-            </p>
+<ng-include src="'left_nav.html'"></ng-include>
+
+<main>
+    <section class="album-covers container clearfix">
+        <h1>Browse Collection</h1>
+        <div class="collection-album-container column third" ng-repeat="album in collection.albums track by $index">
+            <a ui-sref="album({id: album.id})"><img src="{{ album.artURL }}"></a>
+            <div class="collection-album-info caption">
+                <p>
+                    <a class="album-name" ui-sref="album({id: album.id})">{{ album.title }} — {{ album.artist }}</a>
+                    <!-- <br/> -->
+                    <!-- <a ui-sref="album({id: album.id})">{{ album.artist }}</a> -->
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
 <ng-include src="'player_bar.html'"></ng-include>

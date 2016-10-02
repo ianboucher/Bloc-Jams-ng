@@ -5,31 +5,20 @@
   <title>BlocJams</title>
 
   <%= stylesheet_link_tag    "application", media: "all" %>
+  <!-- <%= stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" %> -->
   <%= stylesheet_link_tag    "http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300" %>
   <%= stylesheet_link_tag    "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" %>
 
   <%= javascript_include_tag "application" %>
-  <!-- <%= javascript_include_tag "https://code.jquery.com/jquery-2.1.4.min.js" %> -->
   <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js" %>
   <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/bean/1.0.15/bean.min.js" %>
+  <!-- <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.3/ui-bootstrap-tpls.min.js" %> -->
+
 
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-
-    <nav class="navbar" ng-controller="NavCtrl"> <!-- navigation bar -->
-        <a ui-sref="landing" class="logo">
-            <img src="/assets/images/bloc_jams_logo.png" alt="bloc jams logo" class="logo">
-        </a>
-        <div class="links-container">
-            <a ui-sref="collection" class="navbar-link">Collection</a>
-            <a ng-hide="signedIn()" ui-sref="login" class="navbar-link">Log In</a>
-            <a ng-hide="signedIn()" ui-sref="register" class="navbar-link">Register</a>
-            <a ng-show="signedIn()" ui-sref="/" class="navbar-link">{{ user.username }}</a>
-            <a ng-show="signedIn()" ng-click="logout()" class="navbar-link">Log Out</a>
-        </div>
-    </nav>
 
     <ui-view></ui-view>
 

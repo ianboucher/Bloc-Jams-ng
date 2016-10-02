@@ -45,7 +45,6 @@ angular
                     function albumsReceived(albumResponse)
                     {
                         SongPlayer.currentAlbum = albumResponse.data;
-                        console.log(SongPlayer.currentAlbum)
 
                     },
                     function albumRetreivalFailed(data)
