@@ -4,6 +4,7 @@ class AlbumsController < ApplicationController
     end
 
     def show
-        render json: Album.find(params[:id]).to_json(:include => :songs)
+        render json: Album.find(params[:id]).to_json(include: { songs: {
+                                                                :include => :album } } )
     end
 end

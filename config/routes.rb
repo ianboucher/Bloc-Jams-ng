@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     resources :songs, only: [:index, :show]
 
+    resources :playlists, only: [:index, :show, :create]
+
     # ensure Angular app is served upon browser refresh or incorrect URL
     get "/(*redirect_path)", to: "application#angular"
 

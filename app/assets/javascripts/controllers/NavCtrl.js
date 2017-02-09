@@ -2,7 +2,8 @@
 
 angular
     .module("blocJams")
-    .controller("NavCtrl", ["$scope", "Auth", function ($scope, Auth)
+    .controller("NavCtrl", ["$scope", "Auth",
+        function NavCtrl($scope, Auth)
         {
             $scope.signedIn = Auth.isAuthenticated;
             $scope.logout   = Auth.logout;

@@ -34,24 +34,11 @@ angular
                 currentBuzzObject.bind("timeupdate", function (event)
                 {
                     // use Bean library to fire timeupdate event on SongPlayer
-                    // when fired by buzzObject
                     bean.fire(SongPlayer, "timeupdate"); // To-do: encapsulate Bean in my own "Event Service"
                 });
 
                 SongPlayer.currentSong = song;
-
-                // set the album associated with the current song // To-do: reduce http requests by getting from collection
-                RequestDataService.getAlbum(song.album_id).then(
-                    function albumsReceived(albumResponse)
-                    {
-                        SongPlayer.currentAlbum = albumResponse.data;
-
-                    },
-                    function albumRetreivalFailed(data)
-                    {
-                        console.log("error in Album service getAll()"); // To-do: handle error properly
-                    }
-                );
+                bean.fire(SongPlayer, "songupdate");
             }
 
 
@@ -78,18 +65,7 @@ angular
             }
 
             /*
-            * @function getSongIndex
-            * @desc Finds the index of 'song' within the album song list
-            * @param {Object} song
-            * @returns {Number}
-            */
-            function getSongIndex(song)
-            {
-                return SongPlayer.currentAlbum.songs.indexOf(song);
-            }
-
-            /*
-            * @desc Stores currently displayed album information
+            * @desc Stores album information currently being viewed
             * @type {Object}
             */
             SongPlayer.displayedAlbum = {};
@@ -98,13 +74,19 @@ angular
             * @desc Stores album information for the currently playing song
             * @type {Object}
             */
-            SongPlayer.currentAlbum = {}; //-------THIS IS DISPLAYED ALBUM. NEED ALBUM OF CURRENTLY PLAYING SONG FOR PLAYER BAR
+            SongPlayer.currentAlbum = {};
 
             /*
             * @desc Stores the currently playing song
             * @type {Object}
             */
             SongPlayer.currentSong = {};
+
+            /*
+            * @desc Stores the index of the currently playing song
+            * @type {Number}
+            */
+            SongPlayer.currentSongIndex = null;
 
             /*
             * @desc Current playback time (in seconds) of currently playing song
@@ -116,7 +98,7 @@ angular
             * @desc Stores the current volume setting
             * @type {Number}
             */
-            SongPlayer.volume = null;
+            SongPlayer.volume = 80;
 
             /*
             * @desc Stores the maximum volume setting
@@ -129,10 +111,15 @@ angular
             * @desc Plays the selected new or paused song
             * @param {Object} song
             */
-            SongPlayer.play = function(song)
+            SongPlayer.play = function(song, index)
             {
                 // enable PlayerBar to use this method without access to 'song' object
-                song = song || SongPlayer.currentSong;
+                song  = song  || SongPlayer.currentSong;
+
+                if (index || index === 0)
+                {
+                    SongPlayer.currentSongIndex = index;
+                }
 
                 if (SongPlayer.currentSong !== song)
                 {
@@ -141,9 +128,10 @@ angular
                 }
                 else if (SongPlayer.currentSong === song)
                 {
-                    if (currentBuzzObject.isPaused ())
+                    if (currentBuzzObject.isPaused())
                     {
-                        playSong (song);
+                        playSong(song);
+                        bean.fire(SongPlayer, "songupdate")
                     }
                 };
             };
@@ -158,8 +146,9 @@ angular
                 // enable PlayerBar to use this method without access to 'song' object
                 song = song || SongPlayer.currentSong;
 
-                currentBuzzObject.pause ();
+                currentBuzzObject.pause();
                 song.playing = false;
+                bean.fire(SongPlayer, "songupdate");
             };
 
             /*
@@ -168,8 +157,7 @@ angular
             */
             SongPlayer.next = function()
             {
-                var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-                currentSongIndex += 1;
+                var currentSongIndex = SongPlayer.currentSongIndex += 1;
 
                 if (currentSongIndex > SongPlayer.currentAlbum.songs.length - 1)
                 {
@@ -190,8 +178,7 @@ angular
             */
             SongPlayer.previous = function()
             {
-                var currentSongIndex = getSongIndex(SongPlayer.currentSong);
-                currentSongIndex -= 1;
+                var currentSongIndex = SongPlayer.currentSongIndex -= 1;
 
                 if (currentSongIndex < 0)
                 {

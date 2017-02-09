@@ -1,46 +1,44 @@
  <section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
      <div class="container">
          <div class="control-group main-controls">
-             <a class="previous" ng-click="playerBar.songPlayer.previous()">
+             <a class="previous" ng-click="playerBar.previous()">
                  <span class="ion-skip-backward"></span>
              </a>
              <a class="play-pause">
                  <span class="ion-play"
-                       ng-show="!playerBar.songPlayer.currentSong.playing"
-                       ng-click="playerBar.songPlayer.play()">
+                       ng-show="!playerBar.currentSong.playing"
+                       ng-click="playerBar.play()">
                  </span>
                  <span class="ion-pause"
-                       ng-show="playerBar.songPlayer.currentSong.playing"
-                       ng-click="playerBar.songPlayer.pause()">
+                       ng-show="playerBar.currentSong.playing"
+                       ng-click="playerBar.pause()">
                  </span>
              </a>
-             <a class="next" ng-click="playerBar.songPlayer.next()">
+             <a class="next" ng-click="playerBar.next()">
                  <span class="ion-skip-forward"></span>
              </a>
          </div>
          <div class="control-group currently-playing">
-             <h3 class="song-artist-name">{{ playerBar.getCurrentSongTitle() }} — {{ playerBar.songPlayer.currentAlbum.artist }}</h3>
-             <!-- <h3 class="artist-name">{{ playerBar.songPlayer.currentAlbum.artist }}</h3> -->
+             <h3 class="song-artist-name">{{ playerBar.currentSong.title }} — {{ playerBar.currentSong.album.artist }}</h3>
              <div class="seek-control">
-                 <!-- <h3 class="artist-song-mobile">{{ playerBar.getCurrentSongTitle() }} — {{ playerBar.songPlayer.currentAlbum.artist }}</h3> -->
                  <div class="seek-bar">
                      <!-- Hardcoded values requred for conversion from miliseconds -->
                      <seek-bar
-                               value="{{ time / 1000 }}"
-                               max="{{ playerBar.songPlayer.currentSong.duration / 1000 }}"
-                               on-change="playerBar.songPlayer.setCurrentTime(value)">
+                               value="{{ playerBar.time / 1000 }}"
+                               max="{{ playerBar.currentSong.duration / 1000 }}"
+                               on-change="playerBar.setCurrentTime(value)">
                      </seek-bar>
                  </div>
-                 <div class="current-time">{{ time | timecode }}</div>
-                 <div class="total-time">{{ playerBar.songPlayer.currentSong.duration | timecode }}</div>
+                 <div class="current-time">{{ playerBar.time | timecode }}</div>
+                 <div class="total-time">{{ playerBar.currentSong.duration | timecode }}</div>
              </div>
          </div>
          <div class="control-group volume">
              <span class="icon ion-volume-high"></span>
              <seek-bar
-                       value="{{ playerBar.songPlayer.volume }}"
-                       max="{{ playerBar.songPlayer.maxVolume }}"
-                       on-change="playerBar.songPlayer.setVolume(value)">
+                       value="{{ playerBar.volume }}"
+                       max="{{ playerBar.maxVolume }}"
+                       on-change="playerBar.setVolume(value)">
              </seek-bar>
          </div>
      </div>

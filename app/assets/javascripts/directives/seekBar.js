@@ -70,10 +70,8 @@ angular
                     */
                     function notifyOnChange(newValue)
                     {
-                        console.log("calling notifyOnChange");
                         if (typeof scope.onChange === "function")
                         {
-                            console.log("sending value to onChange");
                             scope.onChange({"value": newValue});
                         }
                     }
@@ -86,7 +84,6 @@ angular
                     */
                     scope.fillWidth = function()
                     {
-                        // console.log("calling fillWidth with percentString = " + percentString()) //--------- REMOVE
                         return {
                             "width" : percentString()
                         };
@@ -100,7 +97,6 @@ angular
                     */
                     scope.thumbPosition = function()
                     {
-                        // console.log("calling thumbPosition with percentString =" + percentString()) //--------- REMOVE
                         return {
                             "left" : percentString()
                         };
@@ -116,7 +112,6 @@ angular
                         var percent = calculatePercent(seekBarElem, event);
 
                         scope.value = percent * scope.max;
-                        // console.log("calling onChange from onClickSeekBar with scope.value of " + scope.value)
                         notifyOnChange(scope.value)
                     };
 
@@ -128,23 +123,19 @@ angular
                     scope.trackThumb = function($event)
                     {
                         var $thumb = angular.element($event.target);
-                        console.log("mousedown on thumb")
                         $document.on("mousemove", function dragThumb(event)
                         {
                             var percent = calculatePercent(seekBarElem, event);
 
                             scope.$apply (function ()
                             {
-                                console.log("applying changes")
                                 scope.value = percent * scope.max;
-                                // console.log("calling onChange from trackThumb with scope.value of " + scope.value)
                                 notifyOnChange(scope.value)
                             });
                         });
 
                         $document.on("mouseup", function clearThumbListeners()
                         {
-                            console.log("removing listeners") //------------------- REMOVE
                             $document.off("mousemove");
                             $document.off("mouseup");
                         });

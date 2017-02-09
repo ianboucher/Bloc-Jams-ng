@@ -1,0 +1,21 @@
+<ng-include src="'left_nav.html'"></ng-include>
+
+<main>
+    <section class="album-covers container clearfix">
+        <h1>Browse Playlists</h1>
+        <div ng-repeat="playlist in playlists.index track by $index">
+            <div class="collection-album-info caption">
+                <p>
+                    <a class="album-name" ui-sref="playlist({id: playlist.id})">
+                        {{ playlist.name }} – {{ playlist.songs.length }} songs
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div>
+            <a ui-sref="newPlaylist" class="nav-link"><span class="ion-plus-round"></span> New Playlist</a>
+        </div>
+    </section>
+</main>
+
+<ng-include src="'player_bar.html'"></ng-include>

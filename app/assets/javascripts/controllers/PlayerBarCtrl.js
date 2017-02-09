@@ -7,26 +7,63 @@ angular
         {
             self = this;
 
-            self.songPlayer = SongPlayer;
+            self.currentSong  = SongPlayer.currentSong;
+            self.currentAlbum = SongPlayer.currentAlbum;
+            self.volume       = SongPlayer.volume;
+            self.maxVolume    = SongPlayer.maxVolume;
+            self.time         = SongPlayer.getCurrentTime() * 1000;
 
-            self.getCurrentSongTitle = function()
+            // using "Bean" library to emit/listen for events firing on SongPlayer
+            // to update player bar info.
+            bean.on(SongPlayer, "songupdate", function()
             {
-                // console.log(SongPlayer.currentSong.title);
-                return SongPlayer.currentSong.title;
-            };
+                    self.currentSong  = SongPlayer.currentSong;
+                    self.currentAlbum = SongPlayer.currentAlbum;
+            });
 
-            self.getSongDuration = function()
-            {
-                return SongPlayer.currentSong.duration;
-            };
 
-            // use Bean library to listen for timeupdate event firing on SongPlayer
             bean.on(SongPlayer, "timeupdate", function() // To-do: encapsulate Bean in my own "Event Service"
             {
                 $scope.$apply(function()
                 {
-                    $scope.time = SongPlayer.getCurrentTime() * 1000;
+                    self.time = SongPlayer.getCurrentTime() * 1000;
                 });
             });
+
+
+            self.setCurrentTime = function(value)
+            {
+                SongPlayer.setCurrentTime(value)
+            };
+
+
+            self.setVolume = function(value)
+            {
+                SongPlayer.setVolume(value);
+            };
+
+
+            self.play = function()
+            {
+                SongPlayer.play();
+            };
+
+
+            self.pause = function()
+            {
+                SongPlayer.pause();
+            };
+
+
+            self.next = function()
+            {
+                SongPlayer.next();
+            };
+            
+
+            self.previous = function()
+            {
+                SongPlayer.previous();
+            };
         }
     ]);

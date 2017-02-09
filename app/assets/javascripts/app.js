@@ -39,6 +39,42 @@ angular
             )
             .state
             (
+                "songlist",
+                {
+                    "url"         : "/songlist",
+                    "controller"  : "SongsCtrl as songlist",
+                    "templateUrl" : "songs.html"
+                }
+            )
+            .state
+            (
+                "playlistIndex",
+                {
+                    "url"         : "/playlist/index",
+                    "controller"  : "PlaylistsCtrl as playlists",
+                    "templateUrl" : "playlist_index.html"
+                }
+            )
+            .state
+            (
+                "playlist",
+                {
+                    "url"         : "/playlist/:id",
+                    "controller"  : "PlaylistCtrl as playlist",
+                    "templateUrl" : "playlist.html"
+                }
+            )
+            .state
+            (
+                "newPlaylist",
+                {
+                    "url"         : "/new_playlist/",
+                    "controller"  : "NewPlaylistCtrl as newPlaylist",
+                    "templateUrl" : "playlist_new.html"
+                }
+            )
+            .state
+            (
                 "login",
                 {
                     "url"         : "/login",

@@ -1,0 +1,11 @@
+<ng-include src="'left_nav.html'"></ng-include>
+
+
+<form ng-submit="addPlaylist(playlist.name)">
+    <div>
+        <input type="name" placeholder="New Playlist" ng-model="playlist.name">
+    </div>
+    <br/>
+
+    <input type="submit" class="button" value="Submit">
+</form>

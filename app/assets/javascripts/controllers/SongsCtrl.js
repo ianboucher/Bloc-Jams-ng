@@ -2,20 +2,22 @@
 
 angular
     .module("blocJams")
-    .controller("AlbumCtrl", ["SongPlayer", "RequestDataService", "$stateParams",
-        function AlbumCtrl(SongPlayer, RequestDataService, $stateParams)
+    .controller("SongsCtrl", ["RequestDataService", "SongPlayer",
+        function SongsCtrl(RequestDataService, SongPlayer)
         {
             var self = this;
 
-            RequestDataService.getAlbum($stateParams.id)
+            SongPlayer.displayedAlbum = {};
+
+            RequestDataService.getSongs()
                 .then(
-                    function albumsReceived(albumResponse)
+                    function songsReceived(songsResponse)
                     {
-                        self.albumData = SongPlayer.displayedAlbum = albumResponse.data;
+                        self.songs = SongPlayer.displayedAlbum.songs = songsResponse.data;
                     },
-                    function albumRetreivalFailed(data)
+                    function songsRetreivalFailed(data)
                     {
-                        console.log("error in Album service getAll()");
+                        console.log("error in Album service getAll()"); //------ To-do: handle error properly
                     }
                 );
 
