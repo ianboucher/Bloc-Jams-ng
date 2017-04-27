@@ -33,9 +33,6 @@ ActiveRecord::Schema.define(version: 20160912135043) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "playlistings", ["playlist_id"], name: "index_playlistings_on_playlist_id", using: :btree
-  add_index "playlistings", ["song_id"], name: "index_playlistings_on_song_id", using: :btree
-
   create_table "playlists", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -83,8 +80,6 @@ ActiveRecord::Schema.define(version: 20160912135043) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "playlistings", "playlists"
-  add_foreign_key "playlistings", "songs"
   add_foreign_key "playlists", "users"
   add_foreign_key "songs", "albums"
 end

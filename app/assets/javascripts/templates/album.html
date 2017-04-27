@@ -2,8 +2,7 @@
 
 <div class="album-cover-art" style="background-image:url({{ album.albumData.artURL }})"></div>
 
-
-<main class="album-view container narrow">
+<main class="container narrow">
 
     <section class="clearfix">
         <div class="album-view-details column half">
@@ -13,8 +12,8 @@
         </div>
     </section>
 
-    <table class="album-view-song-list">
-        <tr class="album-view-song-item"
+    <table class="album-view song-list">
+        <tr class="song-item"
             ng-repeat="song in album.albumData.songs track by $index"
             ng-mouseover="hovered = true"
             ng-mouseleave="hovered = false">
@@ -22,18 +21,18 @@
             <td class="song-item-number">
                 <span ng-show="!song.playing && !hovered">{{ $index + 1 }}</span>
 
-                <a class="album-song-button"
+                <a class="song-button"
                     ng-show="!song.playing && hovered"
                     ng-click="album.play(song, $index)"><span class="ion-play"></span>
                 </a>
 
-                <a class="album-song-button"
+                <a class="song-button"
                     ng-show="song.playing"
                     ng-click="album.pause(song)"><span class="ion-pause"></span>
                 </a>
             </td>
 
-            <td class="song-item-title">{{ song.title }}</td>
+            <td class="album-view-song-item-title">{{ song.title }}</td>
             <td class="song-item-duration">{{ song.duration | timecode }}</td>
         </tr>
     </table>

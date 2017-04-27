@@ -1,9 +1,9 @@
 <ng-include src="'left_nav.html'"></ng-include>
 
-<main class="album-view container narrow">
+<main class="container narrow">
 
-    <table class="album-view-song-list">
-        <tr class="album-view-song-item"
+    <table class="song-list">
+        <tr class="song-item"
             ng-repeat="song in playlist.songs.songs track by $index"
             ng-mouseover="hovered = true"
             ng-mouseleave="hovered = false">
@@ -11,19 +11,19 @@
             <td class="song-item-number">
                 <span ng-show="!song.playing && !hovered">{{ $index + 1 }}</span>
 
-                <a class="album-song-button"
+                <a class="song-button"
                     ng-show="!song.playing && hovered"
                     ng-click="playlist.play(song, $index)"><span class="ion-play"></span>
                 </a>
 
-                <a class="album-song-button"
+                <a class="song-button"
                     ng-show="song.playing"
                     ng-click="playlist.pause(song)"><span class="ion-pause"></span>
                 </a>
             </td>
 
             <td class="song-item-title">{{ song.title }}</td>
-            <td>{{ song.album.artist }}</td>
+            <td class="song-item-artist">{{ song.album.artist }}</td>
             <td class="song-item-duration">{{ song.duration | timecode }}</td>
         </tr>
     </table>

@@ -1,6 +1,7 @@
 User.destroy_all
-Album.destroy_all
 Song.destroy_all
+Album.destroy_all
+
 
 # Create users
 usernames = ["Bert", "Ernie", "Calvin", "Hobbes"]

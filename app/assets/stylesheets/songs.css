@@ -1,0 +1,60 @@
+.song-list {
+    width: 100%;
+    margin: 5rem auto;
+    font-weight: 300;
+    font-size: 0.75em;
+    border-collapse: collapse; /* 'collapse' allows adjacent cells to share borders - default is 'separated' */
+    z-index: 1;
+}
+
+.song-item {
+    height: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
+.song-item-number {
+    width: 5%;
+    min-width: 30px;
+}
+
+.song-item-title {
+    width: 50%;
+}
+
+.song-item-artist {
+    width: 25%;
+}
+
+.song-item-duration {
+    width: 20%;
+    text-align: right;
+}
+
+.song-button {
+    text-align: center;
+    font-size: 14px;
+    background-color: white;
+    color: rgb(210, 40, 123);
+    border-radius: 50% 50%;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+}
+
+.song-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(210, 40, 123);
+}
+
+.song-button span {
+    line-height: 28px;
+}
+
+/* ensure song list has spacing around it on devices down to 320px */
+@media (max-width: 1024px) and (min-width: 320px) {
+    .song-list {
+        position: relative;
+        width: 80%;
+    }
+}
