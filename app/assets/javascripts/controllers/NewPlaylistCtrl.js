@@ -2,8 +2,8 @@
 
 angular
     .module("blocJams")
-    .controller("NewPlaylistCtrl", ["CommitDataService", "$scope",
-        function NewPlaylistCtrl(CommitDataService, $scope)
+    .controller("NewPlaylistCtrl", ["CommitDataService", "$scope", "$state",
+        function NewPlaylistCtrl(CommitDataService, $scope, $state)
         {
             var self = this;
 
@@ -11,9 +11,9 @@ angular
             {
                 CommitDataService.newPlaylist(name)
                     .then(
-                        function()
+                        function(playlist)
                         {
-                            console.log("success!");
+                            $state.go("playlist", {id: playlist.data.id});
                         },
                         function()
                         {

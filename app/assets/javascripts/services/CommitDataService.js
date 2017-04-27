@@ -10,7 +10,7 @@ angular
                 return $http(
                 {
                     "method" : "POST",
-                    "url"    : "/playlists/create",
+                    "url"    : "/playlists",
                     "data"   : { "name" : name }
                 });
             }

@@ -2,9 +2,14 @@
 
 <main class="container narrow">
 
+    <section class="playlist-heading container clearfix">
+        <h1>{{ playlist.name }}</h1>
+        <a ui-sref="newPlaylist" class="link-text"><span class="ion-plus-round"></span> Let's Add Some Songs</a>
+    </section>
+
     <table class="song-list">
         <tr class="song-item"
-            ng-repeat="song in playlist.songs.songs track by $index"
+            ng-repeat="song in playlist.songs track by $index"
             ng-mouseover="hovered = true"
             ng-mouseleave="hovered = false">
 

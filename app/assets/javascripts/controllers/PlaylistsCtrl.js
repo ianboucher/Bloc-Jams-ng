@@ -23,9 +23,9 @@ angular
             {
                 CommitDataService.newPlaylist(name)
                     .then(
-                        function()
+                        function(data)
                         {
-                            console.log("success!");
+                            console.log(data);
                         },
                         function()
                         {

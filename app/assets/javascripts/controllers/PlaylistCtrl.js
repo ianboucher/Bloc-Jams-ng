@@ -11,7 +11,9 @@ angular
                 .then(
                     function playlistReceived(playlistResponse)
                     {
-                        self.songs = SongPlayer.displayedAlbum = playlistResponse.data;
+                        console.log(playlistResponse)
+                        self.name  = playlistResponse.data.name;
+                        self.songs = SongPlayer.displayedAlbum = playlistResponse.data.songs;
                     },
                     function playlistRetreivalFailed(data)
                     {
