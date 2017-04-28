@@ -3,28 +3,26 @@
 <main>
     <section class="playlist-heading container clearfix">
         <h1>Browse Playlists</h1>
-        <a ui-sref="newPlaylist" class="link-text"><span class="ion-plus-round"></span> New Playlist</a>
+        <a ui-sref="newPlaylist">
+            <button class="button">Make a New Playlist</button>
+        </a>
     </section>
 
-    <!-- <section class="song-list">
-        <div ng-repeat="playlist in playlists.index track by $index">
+    <section class="container clearfix">
+        <div class="playlist-album-container column third" ng-repeat="playlist in playlists.index track by $index">
             <div>
-            <p>
-                <a class="song-item-title" ui-sref="playlist({id: playlist.id})">
-                    {{ playlist.name }} – {{ playlist.songs.length }} songs
-                </a>
-            </p>
+                <a ui-sref="playlist({id: playlist.id})"><img src="{{ playlist.artURL }}"></a>
+                <div class="ion-ios-list-outline"></div>
+            </div>
+            <div class="playlist-album-info caption">
+                <p>
+                    <a class="album-name" ui-sref="playlist({id: playlist.id})">
+                        {{ playlist.name }} — {{ playlist.description }}
+                    </a>
+                </p>
             </div>
         </div>
-    </section> -->
-
-    <table class="song-list">
-        <tr class="song-item" ng-repeat="playlist in playlists.index track by $index">
-            <td class="song-item-title">{{ playlist.name }}</td>
-            <td class="song-item-artist">{{ playlist.owner }}</td>
-            <td class="song-item-duration">{{ playlist.songs.length }}</td>
-        </tr>
-    </table>
+    </section>
 </main>
 
 <ng-include src="'player_bar.html'"></ng-include>

@@ -86,7 +86,9 @@ songs = Song.all
 
 users.each do |user|
     user.playlists.create!(
-        name: "My Playlist"
+        name: "My Playlist",
+        description: "An awesome playlist",
+        artURL: "/assets/images/album_covers/#{Random.new.rand(1..20)}.png"
     )
 end
 

@@ -4,7 +4,9 @@
 
     <section class="playlist-heading container clearfix">
         <h1>{{ playlist.name }}</h1>
-        <a ui-sref="newPlaylist" class="link-text"><span class="ion-plus-round"></span> Let's Add Some Songs</a>
+        <a ui-sref="playlistings({id: playlist.id})">
+            <button class="button">Lets Add Some Songs</button>
+        </a>
     </section>
 
     <table class="song-list">
