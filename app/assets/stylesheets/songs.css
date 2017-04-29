@@ -15,10 +15,18 @@
 .song-item-number {
     width: 5%;
     min-width: 30px;
+    text-align: center;
+}
+
+.song-item-add-remove {
+    width: 10%;
+    min-width: 30px;
+    text-align: center;
 }
 
 .song-item-title {
     width: 50%;
+    padding-left: 0.5rem;
 }
 
 .song-item-artist {

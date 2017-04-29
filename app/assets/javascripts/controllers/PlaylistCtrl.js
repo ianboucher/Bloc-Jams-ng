@@ -2,8 +2,8 @@
 
 angular
     .module("blocJams")
-    .controller("PlaylistCtrl", ["RequestDataService", "$stateParams", "SongPlayer",
-        function PlaylistCtrl(RequestDataService, $stateParams, SongPlayer)
+    .controller("PlaylistCtrl", ["RequestDataService", "CommitDataService", "$stateParams", "SongPlayer",
+        function PlaylistCtrl(RequestDataService, CommitDataService, $stateParams, SongPlayer)
         {
             var self = this;
 
@@ -11,7 +11,7 @@ angular
                 .then(
                     function playlistReceived(playlistResponse)
                     {
-                        console.log(playlistResponse)
+                        self.id    = playlistResponse.data.id;
                         self.name  = playlistResponse.data.name;
                         self.songs = SongPlayer.displayedAlbum = playlistResponse.data.songs;
                     },
@@ -20,6 +20,21 @@ angular
                         console.log("error in Album service getAll()"); //------ To-do: handle error properly
                     }
                 );
+
+                self.remove = function(song, index)
+                {
+                    console.log(song);
+                    console.log(index);
+                    CommitDataService.removePlaylisting($stateParams.id, song.id.toString())
+                        .then(function(playlisting)
+                        {
+                            // remove song from self.songs
+                            self.songs.splice(index, 1);
+                        })
+                        .catch(function(error){
+                            console.log(error);
+                        })
+                };
 
 
                 // bean.on(SongPlayer, "songupdate", function()

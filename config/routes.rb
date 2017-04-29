@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
     resources :playlists, only: [:index, :show, :create]
 
+    # note the use of 'singular resourse' for routing without id
+    resource :playlistings, only: [:index, :show, :create, :destroy]
+
     # ensure Angular app is served upon browser refresh or incorrect URL
     get "/(*redirect_path)", to: "application#angular"
 

@@ -2,16 +2,9 @@
 
 <main class="container narrow">
 
-    <section class="playlist-heading container clearfix">
-        <h1>{{ playlist.name }}</h1>
-        <a ui-sref="playlistings({id: playlist.id})">
-            <button class="button">Lets Add Some Songs</button>
-        </a>
-    </section>
-
     <table class="song-list">
         <tr class="song-item"
-            ng-repeat="song in playlist.songs track by $index"
+            ng-repeat="song in playlisting.songs track by $index"
             ng-mouseover="hovered = true"
             ng-mouseleave="hovered = false">
 
@@ -20,17 +13,17 @@
 
                 <a class="song-button"
                     ng-show="!song.playing && hovered"
-                    ng-click="playlist.play(song, $index)"><span class="ion-play"></span>
+                    ng-click="playlisting.play(song, $index)"><span class="ion-play"></span>
                 </a>
 
                 <a class="song-button"
                     ng-show="song.playing"
-                    ng-click="playlist.pause(song)"><span class="ion-pause"></span>
+                    ng-click="playlisting.pause(song)"><span class="ion-pause"></span>
                 </a>
             </td>
 
             <td class="song-item-add-remove">
-                <button class="button" ng-click="playlist.remove(song, $index)">Eject</button>
+                <button class="button" ng-click="playlisting.add(song)">Add</button>
             </td>
 
             <td class="song-item-title">{{ song.title }}</td>

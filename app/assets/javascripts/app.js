@@ -57,6 +57,15 @@ angular
             )
             .state
             (
+                "newPlaylist",
+                {
+                    "url"         : "/new_playlist/",
+                    "controller"  : "NewPlaylistCtrl as newPlaylist",
+                    "templateUrl" : "playlist_new.html"
+                }
+            )
+            .state
+            (
                 "playlist",
                 {
                     "url"         : "/playlist/:id",
@@ -66,11 +75,11 @@ angular
             )
             .state
             (
-                "newPlaylist",
+                "playlistings",
                 {
-                    "url"         : "/new_playlist/",
-                    "controller"  : "NewPlaylistCtrl as newPlaylist",
-                    "templateUrl" : "playlist_new.html"
+                    "url"         : "/playlist/:id/songs",
+                    "controller"  : "PlaylistingCtrl as playlisting",
+                    "templateUrl" : "playlistings.html"
                 }
             )
             .state
