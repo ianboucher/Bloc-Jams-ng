@@ -2,12 +2,12 @@
 
 angular
     .module("blocJams")
-    .controller("AlbumCtrl", ["SongPlayer", "RequestDataService", "$stateParams",
-        function AlbumCtrl(SongPlayer, RequestDataService, $stateParams)
+    .controller("AlbumCtrl", ["SongPlayer", "DataService", "$stateParams",
+        function AlbumCtrl(SongPlayer, DataService, $stateParams)
         {
             var self = this;
 
-            RequestDataService.getAlbum($stateParams.id)
+            DataService.getAlbum($stateParams.id)
                 .then(
                     function albumsReceived(albumResponse)
                     {

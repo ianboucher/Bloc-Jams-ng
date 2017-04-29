@@ -2,12 +2,12 @@
 
 angular
     .module("blocJams")
-    .controller("PlaylistsCtrl", ["RequestDataService",
-        function PlaylistsCtrl(RequestDataService)
+    .controller("PlaylistsCtrl", ["DataService",
+        function PlaylistsCtrl(DataService)
         {
             var self = this;
 
-            RequestDataService.getPlaylists()
+            DataService.getPlaylists()
                 .then(
                     function playlistsReceived(playlistResponse)
                     {
@@ -21,7 +21,7 @@ angular
 
             function addPlaylist(name)
             {
-                CommitDataService.newPlaylist(name)
+                DataService.newPlaylist(name)
                     .then(
                         function(data)
                         {

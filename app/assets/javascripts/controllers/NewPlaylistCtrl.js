@@ -2,14 +2,14 @@
 
 angular
     .module("blocJams")
-    .controller("NewPlaylistCtrl", ["CommitDataService", "$scope", "$state",
-        function NewPlaylistCtrl(CommitDataService, $scope, $state)
+    .controller("NewPlaylistCtrl", ["DataService", "$scope", "$state",
+        function NewPlaylistCtrl(DataService, $scope, $state)
         {
             var self = this;
 
             $scope.addPlaylist = function(name)
             {
-                CommitDataService.newPlaylist(name)
+                DataService.newPlaylist(name)
                     .then(
                         function(playlist)
                         {

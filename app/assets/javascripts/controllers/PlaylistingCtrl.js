@@ -2,14 +2,14 @@
 
 angular
     .module("blocJams")
-    .controller("PlaylistingCtrl", ["RequestDataService", "CommitDataService", "SongPlayer", "$state", "$stateParams",
-        function PlaylistingCtrl(RequestDataService, CommitDataService, SongPlayer, $state, $stateParams)
+    .controller("PlaylistingCtrl", ["DataService", "SongPlayer", "$state", "$stateParams",
+        function PlaylistingCtrl(DataService, SongPlayer, $state, $stateParams)
         {
             var self = this;
 
             SongPlayer.displayedAlbum = {};
 
-            RequestDataService.getSongs().then(function(songs)
+            DataService.getSongs().then(function(songs)
             {
                 self.songs = songs.data;
             })
@@ -21,7 +21,7 @@ angular
 
             self.add = function(song)
             {
-                CommitDataService.newPlaylisting($stateParams.id, song.id.toString())
+                DataService.newPlaylisting($stateParams.id, song.id.toString())
                     .then(function(playlisting)
                     {
                         console.log(playlisting);

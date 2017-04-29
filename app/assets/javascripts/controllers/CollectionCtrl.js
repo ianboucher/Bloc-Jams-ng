@@ -2,12 +2,12 @@
 
 angular
     .module("blocJams")
-    .controller("CollectionCtrl", ["RequestDataService",
-        function CollectionCtrl(RequestDataService)
+    .controller("CollectionCtrl", ["DataService",
+        function CollectionCtrl(DataService)
         {
             var self = this;
 
-            RequestDataService.getCollection()
+            DataService.getCollection()
                 .then(
                     function albumsReceived(albumResponse)
                     {

@@ -59,7 +59,7 @@ angular
             {
                 SongPlayer.next();
             };
-            
+
 
             self.previous = function()
             {

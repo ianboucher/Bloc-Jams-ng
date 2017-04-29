@@ -2,8 +2,8 @@
 
 angular
     .module("blocJams")
-    .service("SongPlayer", ["$http", "RequestDataService",
-        function SongPlayer($http, RequestDataService)
+    .service("SongPlayer", ["$http",
+        function SongPlayer($http)
         {
             var SongPlayer = {};
 
@@ -34,7 +34,8 @@ angular
                 currentBuzzObject.bind("timeupdate", function (event)
                 {
                     // use Bean library to fire timeupdate event on SongPlayer
-                    bean.fire(SongPlayer, "timeupdate"); // To-do: encapsulate Bean in my own "Event Service"
+                    // TODO: encapsulate Bean in my own "Event Service"
+                    bean.fire(SongPlayer, "timeupdate");
                 });
 
                 SongPlayer.currentSong = song;
