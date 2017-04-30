@@ -16,6 +16,11 @@
                 self.heroTitle = "Sign-up. Tune-in!";
                 self.welcome   = "Welcome Back!";
 
+                /*
+                * function login
+                * @desc Authorizes user with provided credentials
+                * @param {Object} user
+                */
                 $scope.login = function()
                 {
                     Auth.login($scope.user).then(function()
@@ -27,7 +32,11 @@
                     });
                 };
 
-
+                /*
+                * function register
+                * @desc Creates a new user with provided credentials
+                * @param {Object} user
+                */
                 $scope.register = function()
                 {
                     Auth.register($scope.user).then(function()

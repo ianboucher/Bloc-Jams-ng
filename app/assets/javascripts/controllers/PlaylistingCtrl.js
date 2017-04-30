@@ -25,7 +25,11 @@
                     console.log(error);
                 });
 
-
+                /*
+                * function playlisting.add
+                * @desc Creates a new playlisting - add song to playlist
+                * @param {Object} song
+                */
                 self.add = function(song)
                 {
                     DataService.newPlaylisting($stateParams.id, song.id)
@@ -38,14 +42,22 @@
                         })
                 };
 
-
+                /*
+                * function playlisting.play
+                * @desc Plays currently selected song and updates player bar display
+                * @param {Object} song, {number} index
+                */
                 self.play = function(song, index)
                 {
                     SongPlayer.play(song, index);
                     SongPlayer.currentAlbum = SongPlayer.displayedAlbum;
                 };
 
-
+                /*
+                * function playlisting.play
+                * @desc Pauses currently selected song
+                * @param {Object} song
+                */
                 self.pause = function(song)
                 {
                     SongPlayer.pause(song);

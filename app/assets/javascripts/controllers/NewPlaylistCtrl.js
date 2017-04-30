@@ -13,6 +13,11 @@
             {
                 var self = this;
 
+                /*
+                * function newPlaylist.add
+                * @desc Creates a new empty playlist
+                * @param {String} name, {String} description
+                */
                 self.add = function(name, description)
                 {
                     DataService.newPlaylist(name, description).then(function(playlist)

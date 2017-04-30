@@ -33,7 +33,6 @@ angular
 
                 currentBuzzObject.bind("timeupdate", function (event)
                 {
-                    // use Bean library to fire timeupdate event on SongPlayer
                     // TODO: encapsulate Bean in my own "Event Service"
                     bean.fire(SongPlayer, "timeupdate");
                 });

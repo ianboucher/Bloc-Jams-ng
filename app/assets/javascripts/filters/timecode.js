@@ -1,33 +1,38 @@
-"use strict"
+(function()
+{
+    "use strict"
 
-angular
-    .module("blocJams")
-    .filter("timecode", function timecode()
-        {
-            return function(timeInMiliseconds)
+    angular
+        .module("blocJams")
+        .filter("timecode",
+
+            function timecode()
             {
-                timeInMiliseconds = Number.parseFloat(timeInMiliseconds)
-
-                var formattedTime    = null,
-                    wholeSeconds     = Math.floor(timeInMiliseconds / 1000),
-                    minutes          = Math.floor(wholeSeconds / 60),
-                    remainingSeconds = (wholeSeconds% 60);
-
-                if (Number.isNaN(timeInMiliseconds))
+                return function(timeInMiliseconds)
                 {
-                    formattedTime = "-:--";
-                }
-                else
-                {
-                    if (remainingSeconds < 10)
+                    timeInMiliseconds = Number.parseFloat(timeInMiliseconds)
+
+                    var formattedTime    = null,
+                        wholeSeconds     = Math.floor(timeInMiliseconds / 1000),
+                        minutes          = Math.floor(wholeSeconds / 60),
+                        remainingSeconds = (wholeSeconds% 60);
+
+                    if (Number.isNaN(timeInMiliseconds))
                     {
-                        remainingSeconds = "0" + remainingSeconds
-                    };
+                        formattedTime = "-:--";
+                    }
+                    else
+                    {
+                        if (remainingSeconds < 10)
+                        {
+                            remainingSeconds = "0" + remainingSeconds
+                        };
 
-                    formattedTime = minutes + ":" + remainingSeconds;
-                }
+                        formattedTime = minutes + ":" + remainingSeconds;
+                    }
 
-                return formattedTime;
-            };
-        }
-    );
+                    return formattedTime;
+                };
+            }
+        );
+})();

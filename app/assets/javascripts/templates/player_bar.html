@@ -1,5 +1,6 @@
  <section class="player-bar" ng-controller="PlayerBarCtrl as playerBar">
      <div class="container">
+
          <div class="control-group main-controls">
              <a class="previous" ng-click="playerBar.previous()">
                  <span class="ion-skip-backward"></span>
@@ -18,6 +19,7 @@
                  <span class="ion-skip-forward"></span>
              </a>
          </div>
+
          <div class="control-group currently-playing">
              <h3 class="song-artist-name">{{ playerBar.currentSong.title }} — {{ playerBar.currentSong.album.artist }}</h3>
              <div class="seek-control">
@@ -33,6 +35,7 @@
                  <div class="total-time">{{ playerBar.currentSong.duration | timecode }}</div>
              </div>
          </div>
+
          <div class="control-group volume">
              <span class="icon ion-volume-high"></span>
              <seek-bar
@@ -41,5 +44,6 @@
                        on-change="playerBar.setVolume(value)">
              </seek-bar>
          </div>
+         
      </div>
  </section>

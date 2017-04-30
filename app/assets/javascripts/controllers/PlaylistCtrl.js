@@ -24,7 +24,11 @@
                     console.log("error"); //------ To-do: handle error properly
                 });
 
-
+                /*
+                * function playlist.remove
+                * @desc Removes the selected song from the playlist
+                * @param {Object} song, {number} index
+                */
                 self.remove = function(song, index)
                 {
                     DataService.removePlaylisting(self.id, song.id)
@@ -37,14 +41,22 @@
                         })
                 };
 
-
+                /*
+                * function playlist.play
+                * @desc Plays currently selected song and updates player bar display
+                * @param {Object} song, {number} index
+                */
                 self.play = function(song, index)
                 {
                     SongPlayer.play(song, index);
                     SongPlayer.currentAlbum = SongPlayer.displayedAlbum;
                 };
 
-
+                /*
+                * function playlist.play
+                * @desc Pauses currently selected song
+                * @param {Object} song
+                */
                 self.pause = function(song)
                 {
                     SongPlayer.pause(song);
