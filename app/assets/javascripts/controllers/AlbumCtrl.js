@@ -1,34 +1,39 @@
-"use strict";
+(function()
+{
+    "use strict";
 
-angular
-    .module("blocJams")
-    .controller("AlbumCtrl", ["SongPlayer", "DataService", "$stateParams",
-        function AlbumCtrl(SongPlayer, DataService, $stateParams)
-        {
-            var self = this;
+    angular
+        .module("blocJams")
+        .controller("AlbumCtrl", [
+            "SongPlayer",
+            "DataService",
+            "$stateParams",
 
-            DataService.getAlbum($stateParams.id)
-                .then(
-                    function albumsReceived(albumResponse)
-                    {
-                        self.albumData = SongPlayer.displayedAlbum = albumResponse.data;
-                    },
-                    function albumRetreivalFailed(data)
-                    {
-                        console.log("error in Album service getAll()");
-                    }
-                );
-
-
-            self.play = function(song, index)
+            function AlbumCtrl(SongPlayer, DataService, $stateParams)
             {
-                SongPlayer.play(song, index);
-                SongPlayer.currentAlbum = SongPlayer.displayedAlbum;
-            };
+                var self = this;
 
-            self.pause = function(song)
-            {
-                SongPlayer.pause(song);
+                DataService.getAlbum($stateParams.id).then(function(album)
+                {
+                    self.albumData = SongPlayer.displayedAlbum = album.data;
+                })
+                .catch(function(error)
+                {
+                    console.log(error);
+                });
+
+
+                self.play = function(song, index)
+                {
+                    SongPlayer.play(song, index);
+                    SongPlayer.currentAlbum = SongPlayer.displayedAlbum;
+                };
+
+
+                self.pause = function(song)
+                {
+                    SongPlayer.pause(song);
+                };
             }
-        }
-    ]);
+        ]);
+})();

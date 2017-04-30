@@ -1,26 +1,29 @@
-"use strict";
+(function()
+{
+    "use strict";
 
-angular
-    .module("blocJams")
-    .controller("NewPlaylistCtrl", ["DataService", "$scope", "$state",
-        function NewPlaylistCtrl(DataService, $scope, $state)
-        {
-            var self = this;
+    angular
+        .module("blocJams")
+        .controller("NewPlaylistCtrl", [
+            "$scope",
+            "$state",
+            "DataService",
 
-            $scope.addPlaylist = function(name)
+            function NewPlaylistCtrl($scope, $state, DataService)
             {
-                DataService.newPlaylist(name)
-                    .then(
-                        function(playlist)
-                        {
-                            $state.go("playlist", {id: playlist.data.id});
-                        },
-                        function()
-                        {
-                            console.log("failure!");
-                        }
-                    );
-            }
+                var self = this;
 
-        }
-    ]);
+                self.add = function(name, description)
+                {
+                    DataService.newPlaylist(name, description).then(function(playlist)
+                    {
+                        $state.go("playlist", { id: playlist.data.id });
+                    })
+                    .catch(function(error)
+                    {
+                        console.log(error); // TODO: handle error properly
+                    });
+                }
+            }
+        ]);
+})();

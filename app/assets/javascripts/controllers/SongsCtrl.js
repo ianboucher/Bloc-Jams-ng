@@ -1,36 +1,40 @@
-"use strict";
+(function()
+{
+    "use strict";
 
-angular
-    .module("blocJams")
-    .controller("SongsCtrl", ["DataService", "SongPlayer",
-        function SongsCtrl(DataService, SongPlayer)
-        {
-            var self = this;
+    angular
+        .module("blocJams")
+        .controller("SongsCtrl", [
+            "DataService",
+            "SongPlayer",
 
-            SongPlayer.displayedAlbum = {};
-
-            DataService.getSongs()
-                .then(
-                    function songsReceived(songsResponse)
-                    {
-                        self.songs = SongPlayer.displayedAlbum.songs = songsResponse.data;
-                    },
-                    function songsRetreivalFailed(data)
-                    {
-                        console.log("error in Album service getAll()"); //------ To-do: handle error properly
-                    }
-                );
-
-
-            self.play = function(song, index)
+            function SongsCtrl(DataService, SongPlayer)
             {
-                SongPlayer.play(song, index);
-                SongPlayer.currentAlbum = SongPlayer.displayedAlbum;
-            };
+                var self = this;
 
-            self.pause = function(song)
-            {
-                SongPlayer.pause(song);
+                SongPlayer.displayedAlbum = {};
+
+                DataService.getSongs().then(function(songs)
+                {
+                    self.songs = SongPlayer.displayedAlbum.songs = songs.data;
+                })
+                .catch(function(error)
+                {
+                    console.log(error); // TODO:  handle error properly
+                });
+
+
+                self.play = function(song, index)
+                {
+                    SongPlayer.play(song, index);
+                    SongPlayer.currentAlbum = SongPlayer.displayedAlbum;
+                };
+                
+
+                self.pause = function(song)
+                {
+                    SongPlayer.pause(song);
+                };
             }
-        }
-    ]);
+        ]);
+})();

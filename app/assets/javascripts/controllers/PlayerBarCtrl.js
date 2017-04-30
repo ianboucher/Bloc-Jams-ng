@@ -1,69 +1,75 @@
-"use strict";
+(function()
+{
+    "use strict";
 
-angular
-    .module("blocJams")
-    .controller("PlayerBarCtrl", ["SongPlayer", "$scope",
-        function PlayerBarCtrl(SongPlayer, $scope)
-        {
-            self = this;
+    angular
+        .module("blocJams")
+        .controller("PlayerBarCtrl", [
+            "SongPlayer",
+            "$scope",
 
-            self.currentSong  = SongPlayer.currentSong;
-            self.currentAlbum = SongPlayer.currentAlbum;
-            self.volume       = SongPlayer.volume;
-            self.maxVolume    = SongPlayer.maxVolume;
-            self.time         = SongPlayer.getCurrentTime() * 1000;
-
-            // using "Bean" library to emit/listen for events firing on SongPlayer
-            // to update player bar info.
-            bean.on(SongPlayer, "songupdate", function()
+            function PlayerBarCtrl(SongPlayer, $scope)
             {
-                    self.currentSong  = SongPlayer.currentSong;
-                    self.currentAlbum = SongPlayer.currentAlbum;
-            });
+                self = this;
 
+                self.currentSong  = SongPlayer.currentSong;
+                self.currentAlbum = SongPlayer.currentAlbum;
+                self.volume       = SongPlayer.volume;
+                self.maxVolume    = SongPlayer.maxVolume;
+                self.time         = SongPlayer.getCurrentTime() * 1000;
 
-            bean.on(SongPlayer, "timeupdate", function() // To-do: encapsulate Bean in my own "Event Service"
-            {
-                $scope.$apply(function()
+                // using "Bean" library to emit/listen for events firing on SongPlayer
+                // to update player bar info.
+                bean.on(SongPlayer, "songupdate", function()
                 {
-                    self.time = SongPlayer.getCurrentTime() * 1000;
+                        self.currentSong  = SongPlayer.currentSong;
+                        self.currentAlbum = SongPlayer.currentAlbum;
                 });
-            });
 
 
-            self.setCurrentTime = function(value)
-            {
-                SongPlayer.setCurrentTime(value)
-            };
+                bean.on(SongPlayer, "timeupdate", function() // TODO: encapsulate Bean in my own "Event Service"
+                {
+                    $scope.$apply(function()
+                    {
+                        self.time = SongPlayer.getCurrentTime() * 1000;
+                    });
+                });
 
 
-            self.setVolume = function(value)
-            {
-                SongPlayer.setVolume(value);
-            };
+                self.setCurrentTime = function(value)
+                {
+                    SongPlayer.setCurrentTime(value)
+                };
 
 
-            self.play = function()
-            {
-                SongPlayer.play();
-            };
+                self.setVolume = function(value)
+                {
+                    SongPlayer.setVolume(value);
+                };
 
 
-            self.pause = function()
-            {
-                SongPlayer.pause();
-            };
+                self.play = function()
+                {
+                    SongPlayer.play();
+                };
 
 
-            self.next = function()
-            {
-                SongPlayer.next();
-            };
+                self.pause = function()
+                {
+                    SongPlayer.pause();
+                };
 
 
-            self.previous = function()
-            {
-                SongPlayer.previous();
-            };
-        }
-    ]);
+                self.next = function()
+                {
+                    SongPlayer.next();
+                };
+
+
+                self.previous = function()
+                {
+                    SongPlayer.previous();
+                };
+            }
+        ]);
+})();

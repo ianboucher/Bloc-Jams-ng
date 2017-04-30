@@ -1,22 +1,24 @@
-"use strict";
+(function()
+{
+    "use strict";
 
-angular
-    .module("blocJams")
-    .controller("CollectionCtrl", ["DataService",
-        function CollectionCtrl(DataService)
-        {
-            var self = this;
+    angular
+        .module("blocJams")
+        .controller("CollectionCtrl", [
+            "DataService",
 
-            DataService.getCollection()
-                .then(
-                    function albumsReceived(albumResponse)
-                    {
-                        self.albums = albumResponse.data;
-                    },
-                    function albumRetreivalFailed(data)
-                    {
-                        console.log("error in Album service getAll()"); //------ To-do: handle error properly
-                    }
-                );
-        }
-    ]);
+            function CollectionCtrl(DataService)
+            {
+                var self = this;
+
+                DataService.getCollection().then(function(albums)
+                {
+                    self.albums = albums.data;
+                })
+                .catch(function(error)
+                {
+                    console.log(error); // TODO: handle error properly
+                });
+            }
+        ]);
+})();

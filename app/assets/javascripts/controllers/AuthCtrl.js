@@ -1,5 +1,5 @@
-(function(){
-
+(function()
+{
     "use strict";
 
     angular
@@ -23,7 +23,7 @@
                         $state.go("collection");
                     })
                     .catch(function(error){
-                        console.log(error);
+                        console.log(error); // TODO: handle error properly
                     });
                 };
 

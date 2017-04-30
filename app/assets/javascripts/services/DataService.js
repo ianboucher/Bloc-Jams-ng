@@ -41,9 +41,12 @@
                     return $http.get("/playlists/" + id + ".json");
                 }
 
-                self.newPlaylist = function(name)
+                self.newPlaylist = function(name, description)
                 {
-                    return $http.post("/playlists", { "name" : name });
+                    return $http.post("/playlists", {
+                        "name"        : name,
+                        "description" : description
+                    });
                 }
 
                 self.newPlaylisting = function(playlist, song)
