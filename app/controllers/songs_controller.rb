@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+
     def index
         render json: Song.all.to_json(:include => :album)
     end
