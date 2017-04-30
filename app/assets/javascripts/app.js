@@ -88,14 +88,7 @@ angular
                 {
                     "url"         : "/login",
                     "controller"  : "AuthCtrl as auth",
-                    "templateUrl" : "login.html",
-                    "onEnter"     : ["$state", "Auth", function($state, Auth)
-                                    {
-                                        Auth.currentUser().then(function ()
-                                        {
-                                            $state.go("landing");
-                                        });
-                                    }]
+                    "templateUrl" : "login.html"
                 }
             )
             .state
@@ -104,14 +97,7 @@ angular
                 {
                     "url"         : "/register",
                     "controller"  : "AuthCtrl as auth",
-                    "templateUrl" : "register.html",
-                    "onEnter"     : ["$state", "Auth", function ($state, Auth)
-                                    {
-                                        Auth.currentUser().then(function ()
-                                        {
-                                            $state.go("landing");
-                                        });
-                                    }]
+                    "templateUrl" : "register.html"
                 }
             )
     });

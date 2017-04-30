@@ -1,32 +1,40 @@
-"use strict";
+(function(){
 
-angular
-    .module("blocJams")
-    .controller("AuthCtrl", ["$scope", "$state", "Auth",
-        function ($scope, $state, Auth)
-        {
-            {
-                this.heroTitle = "Sign-up. Tune-in!";
-            }
+    "use strict";
 
-            {
-                this.welcome = "Welcome Back!";
-            }
+    angular
+        .module("blocJams")
+        .controller("AuthCtrl", [
+            "$scope",
+            "$state",
+            "Auth",
 
-            $scope.login = function()
+            function ($scope, $state, Auth)
             {
-                Auth.login($scope.user).then(function()
+                var self = this;
+
+                self.heroTitle = "Sign-up. Tune-in!";
+                self.welcome   = "Welcome Back!";
+
+                $scope.login = function()
                 {
-                    $state.go("collection");
-                });
-            };
+                    Auth.login($scope.user).then(function()
+                    {
+                        $state.go("collection");
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                    });
+                };
 
-            $scope.register = function()
-            {
-                Auth.register($scope.user).then(function()
+
+                $scope.register = function()
                 {
-                    $state.go("collection");
-                });
-            };
-        }
-    ]);
+                    Auth.register($scope.user).then(function()
+                    {
+                        $state.go("collection");
+                    });
+                };
+            }
+        ]);
+})();
