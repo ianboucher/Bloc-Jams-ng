@@ -1,7 +1,8 @@
 Bloc-Jams
 =================
 
-![alt text](../assets/images/BlocJams.png)
+![alt text](https://github.com/ianboucher/Bloc-Jams-ng/master/public/assets/images/BlocJams.png)
+
 
 What is Bloc-jams?
 ------------------
