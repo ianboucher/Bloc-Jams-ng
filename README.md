@@ -9,7 +9,11 @@ Bloc Jams is a single-page music player application which features interactive s
 
 How does it work?
 -----------------
-Scroll through the landing page and view the random artwork that is presented. Afterword click on the Library button in the top right-hand side of the screen. It will take you to a different view instantly thanks to AngularJS and show you a myriad of albums. Click on a random album and play a song, but ensure that your volume is turned on.
+From the landing page, you can sign-up or sign-in using the links in the navigation bar, or simply go straight to the album collection.
+
+Click on an album cover to view the album tracks and select one to play. There are play, pause and skip controls in the player bar at the bottom of the screen where you can also scrub the track and volume with the seek-bar.
+
+You can create and edit your own playlists where you can add and remove your favorite (as long as your favorite tracks are by Faker McFake!).
 
 Languages Used
 ---------------
