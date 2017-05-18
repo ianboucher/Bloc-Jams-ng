@@ -1,7 +1,7 @@
 {
   "name": "bloc-jams-ng",
   "version": "0.0.2",
-  "description": "Starter project for the Bloc Frontend Web Development",
+  "description": "BlocJams frontend build - based on Bloc Starter",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bloc/bloc-frontend-project-starter.git"
@@ -10,9 +10,10 @@
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Bloc Inc",
+  "author": "Ian B",
   "license": "ISC",
   "dependencies": {
+    "bower": "^1.8.0",
     "hapi": "^7.5.3",
     "path": "^0.4.9"
   },

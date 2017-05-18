@@ -8,6 +8,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'angular-rails-templates'
 gem 'devise'
 gem 'angular_rails_csrf', '1.0.3'
+gem "bower-rails", "~> 0.11.0"
 
 
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -23,5 +24,7 @@ group :development do
 end
 
 source "https://rails-assets.org" do
+  gem "rails-assets-angular"
+  gem "rails-assets-angular-ui-router"
   gem "rails-assets-angular-devise"
 end
